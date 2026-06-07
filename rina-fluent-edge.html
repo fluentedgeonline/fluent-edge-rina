@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fluent Edge | Bar Exam Practice – Rina Miyama</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --ink-light: #3d3d5c;
+    --parchment: #f7f4ef;
+    --parchment-dark: #ede9e1;
+    --gold: #c9a84c;
+    --gold-light: #e8d5a0;
+    --gold-pale: #f5eed8;
+    --crimson: #8b1a1a;
+    --crimson-light: #b52a2a;
+    --sage: #4a6741;
+    --sage-light: #6a8f66;
+    --white: #ffffff;
+    --shadow: rgba(26,26,46,0.12);
+    --shadow-strong: rgba(26,26,46,0.22);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--parchment);
+    color: var(--ink);
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse at 10% 0%, rgba(201,168,76,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 100%, rgba(139,26,26,0.06) 0%, transparent 50%);
+  }
+
+  /* HEADER */
+  header {
+    background: var(--ink);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    box-shadow: 0 2px 20px var(--shadow-strong);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+    font-weight: 600;
+  }
+
+  .logo span {
+    color: rgba(201,168,76,0.5);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+  }
+
+  .student-tag {
+    font-size: 0.78rem;
+    color: rgba(247,244,239,0.45);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* TABS */
+  .tab-bar {
+    background: var(--ink);
+    border-top: 1px solid rgba(201,168,76,0.2);
+    display: flex;
+    padding: 0 2rem;
+    gap: 0;
+  }
+
+  .tab-btn {
+    background: none;
+    border: none;
+    color: rgba(247,244,239,0.45);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.85rem 1.4rem;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    position: relative;
+    top: 1px;
+  }
+
+  .tab-btn:hover { color: var(--gold-light); }
+  .tab-btn.active {
+    color: var(--gold);
+    border-bottom: 2px solid var(--gold);
+  }
+
+  /* MAIN LAYOUT */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* SECTION TITLE */
+  .section-header {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--gold-light);
+    padding-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+
+  .section-sub {
+    font-size: 0.85rem;
+    color: var(--ink-light);
+    font-weight: 300;
+  }
+
+  /* CASE SELECTOR */
+  .case-selector {
+    margin-bottom: 2rem;
+  }
+
+  .case-selector label {
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+  }
+
+  .case-selector select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid var(--gold-light);
+    border-radius: 6px;
+    background: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--ink);
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a84c' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    transition: border-color 0.2s;
+  }
+
+  .case-selector select:focus {
+    outline: none;
+    border-color: var(--gold);
+  }
+
+  /* QUESTION CARD */
+  .question-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 2px 16px var(--shadow);
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--gold);
+    animation: fadeSlide 0.3s ease;
+  }
+
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .q-number {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+
+  .q-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  /* OPTIONS */
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .option-btn {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 0.9rem 1rem;
+    border: 1.5px solid var(--parchment-dark);
+    border-radius: 7px;
+    background: var(--parchment);
+    cursor: pointer;
+    text-align: left;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    color: var(--ink);
+    transition: all 0.18s;
+    line-height: 1.5;
+  }
+
+  .option-btn:hover:not(:disabled) {
+    border-color: var(--gold);
+    background: var(--gold-pale);
+  }
+
+  .option-btn:disabled { cursor: default; }
+
+  .option-label {
+    font-weight: 600;
+    min-width: 1.4rem;
+    color: var(--ink-light);
+    flex-shrink: 0;
+  }
+
+  .option-btn.correct {
+    border-color: var(--sage);
+    background: #eef4ed;
+  }
+  .option-btn.correct .option-label { color: var(--sage); }
+
+  .option-btn.incorrect {
+    border-color: var(--crimson);
+    background: #fdf0f0;
+  }
+  .option-btn.incorrect .option-label { color: var(--crimson); }
+
+  .option-btn.reveal-correct {
+    border-color: var(--sage);
+    background: #eef4ed;
+    opacity: 0.7;
+  }
+
+  /* EXPLANATION */
+  .explanation-box {
+    margin-top: 1.5rem;
+    padding: 1.2rem 1.4rem;
+    background: var(--ink);
+    border-radius: 8px;
+    color: var(--parchment);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    animation: fadeSlide 0.3s ease;
+  }
+
+  .explanation-box .ex-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .explanation-box .loading-dots::after {
+    content: '...';
+    animation: dots 1.2s steps(3, end) infinite;
+  }
+
+  @keyframes dots {
+    0%, 33% { content: '.'; }
+    34%, 66% { content: '..'; }
+    67%, 100% { content: '...'; }
+  }
+
+  /* CONTROLS */
+  .btn-row {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--ink);
+    border: none;
+    padding: 0.75rem 1.6rem;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+
+  .btn-primary:hover { background: #b8962e; }
+  .btn-primary:disabled { opacity: 0.5; cursor: default; }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink-light);
+    border: 1.5px solid var(--parchment-dark);
+    padding: 0.75rem 1.4rem;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+
+  .btn-secondary:hover { border-color: var(--ink-light); color: var(--ink); }
+
+  /* SCORE TRACKER */
+  .score-bar {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--white);
+    border-radius: 8px;
+    padding: 0.9rem 1.3rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 8px var(--shadow);
+    font-size: 0.85rem;
+  }
+
+  .score-item { display: flex; align-items: center; gap: 0.4rem; }
+  .score-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+  }
+  .score-dot.correct { background: var(--sage); }
+  .score-dot.incorrect { background: var(--crimson); }
+  .score-count { font-weight: 500; color: var(--ink); }
+  .score-label { color: var(--ink-light); font-weight: 300; }
+
+  /* ---- TAB 2: WRITTEN ANALYSIS ---- */
+  .scenario-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 2px 16px var(--shadow);
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--crimson);
+  }
+
+  .scenario-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--crimson);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+
+  .scenario-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--ink);
+  }
+
+  .irac-area {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 2px 16px var(--shadow);
+    margin-bottom: 1.5rem;
+  }
+
+  .irac-area h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--ink);
+    margin-bottom: 1.2rem;
+  }
+
+  .irac-field {
+    margin-bottom: 1.2rem;
+  }
+
+  .irac-field label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+  }
+
+  .irac-badge {
+    background: var(--ink);
+    color: var(--gold);
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.15rem 0.45rem;
+    border-radius: 3px;
+    letter-spacing: 0.06em;
+  }
+
+  .irac-field textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1.5px solid var(--parchment-dark);
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    color: var(--ink);
+    background: var(--parchment);
+    resize: vertical;
+    min-height: 80px;
+    line-height: 1.6;
+    transition: border-color 0.2s;
+  }
+
+  .irac-field textarea:focus {
+    outline: none;
+    border-color: var(--crimson);
+    background: var(--white);
+  }
+
+  .feedback-box {
+    margin-top: 1.5rem;
+    padding: 1.4rem 1.6rem;
+    background: var(--ink);
+    border-radius: 8px;
+    color: var(--parchment);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    animation: fadeSlide 0.3s ease;
+    white-space: pre-wrap;
+  }
+
+  .feedback-box .fb-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--crimson-light);
+    font-weight: 500;
+    margin-bottom: 0.7rem;
+  }
+
+  /* SCENARIO PICKER */
+  .scenario-picker {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .scenario-chip {
+    background: var(--white);
+    border: 1.5px solid var(--parchment-dark);
+    border-radius: 20px;
+    padding: 0.45rem 1rem;
+    font-size: 0.82rem;
+    color: var(--ink-light);
+    cursor: pointer;
+    transition: all 0.18s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .scenario-chip:hover { border-color: var(--crimson); color: var(--crimson); }
+  .scenario-chip.active {
+    background: var(--crimson);
+    border-color: var(--crimson);
+    color: var(--white);
+  }
+
+  /* EMPTY STATE */
+  .empty-state {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--ink-light);
+  }
+
+  .empty-state .icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    opacity: 0.4;
+  }
+
+  .empty-state p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    header { padding: 0 1rem; }
+    main { padding: 1.5rem 1rem 3rem; }
+    .tab-btn { padding: 0.85rem 0.9rem; font-size: 0.75rem; }
+    .question-card, .scenario-card, .irac-area { padding: 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Fluent Edge <span>Coaching</span></div>
+  <div class="student-tag">Bar Exam Practice · Rina Miyama</div>
+</header>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('mbe')">MBE · Multiple Choice</button>
+  <button class="tab-btn" onclick="switchTab('written')">Written Analysis · IRAC</button>
+</div>
+
+<main>
+
+  <!-- TAB 1: MBE -->
+  <div id="tab-mbe" class="tab-panel active">
+    <div class="section-header">
+      <div class="section-title">Multistate Bar Examination</div>
+      <div class="section-sub">Select a case to practice. Choose an answer, then read the explanation.</div>
+    </div>
+
+    <div class="score-bar">
+      <div class="score-item">
+        <div class="score-dot correct"></div>
+        <span class="score-count" id="score-correct">0</span>
+        <span class="score-label">correct</span>
+      </div>
+      <div class="score-item">
+        <div class="score-dot incorrect"></div>
+        <span class="score-count" id="score-incorrect">0</span>
+        <span class="score-label">incorrect</span>
+      </div>
+      <div style="margin-left:auto;">
+        <button class="btn-secondary" onclick="resetScore()" style="padding:0.4rem 0.9rem;font-size:0.78rem;">Reset Score</button>
+      </div>
+    </div>
+
+    <div class="case-selector">
+      <label>Select Case</label>
+      <select id="case-select" onchange="loadQuestion()">
+        <option value="">— Choose a case —</option>
+        <option value="lucy">Lucy v. Zehmer (Contract Formation)</option>
+        <option value="hawkins">Hawkins v. McGee (Expectation Damages)</option>
+        <option value="marbury">Marbury v. Madison (Judicial Review)</option>
+        <option value="dudley">R v. Dudley & Stephens (Necessity)</option>
+        <option value="cunningham">R v. Cunningham (Mens Rea)</option>
+        <option value="brown">Brown v. Board of Education (Equal Protection)</option>
+        <option value="garratt">Garratt v. Dailey (Intentional Tort)</option>
+        <option value="palsgraf">Palsgraf v. Long Island Railroad (Negligence)</option>
+      </select>
+    </div>
+
+    <div id="mbe-content">
+      <div class="empty-state">
+        <div class="icon">⚖️</div>
+        <p>Select a case above to begin. Questions are drawn from landmark cases covered in your Fluent Edge lessons.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: WRITTEN ANALYSIS -->
+  <div id="tab-written" class="tab-panel">
+    <div class="section-header">
+      <div class="section-title">Written Analysis · IRAC</div>
+      <div class="section-sub">Read the fact pattern. Write your analysis using IRAC. Submit for AI feedback on legal reasoning and English precision.</div>
+    </div>
+
+    <div class="scenario-picker" id="scenario-picker">
+      <button class="scenario-chip active" onclick="loadScenario('lucy_written')">Lucy v. Zehmer</button>
+      <button class="scenario-chip" onclick="loadScenario('palsgraf_written')">Palsgraf</button>
+      <button class="scenario-chip" onclick="loadScenario('garratt_written')">Garratt v. Dailey</button>
+      <button class="scenario-chip" onclick="loadScenario('hawkins_written')">Hawkins v. McGee</button>
+      <button class="scenario-chip" onclick="loadScenario('dudley_written')">Dudley & Stephens</button>
+    </div>
+
+    <div id="scenario-display" class="scenario-card">
+      <div class="scenario-label">Fact Pattern</div>
+      <div class="scenario-text" id="scenario-text">Loading...</div>
+    </div>
+
+    <div class="irac-area">
+      <h3>Your Written Analysis</h3>
+      <div class="irac-field">
+        <label><span class="irac-badge">I</span> Issue</label>
+        <textarea id="irac-issue" placeholder="State the legal issue presented by the facts..."></textarea>
+      </div>
+      <div class="irac-field">
+        <label><span class="irac-badge">R</span> Rule</label>
+        <textarea id="irac-rule" placeholder="State the applicable legal rule or doctrine..."></textarea>
+      </div>
+      <div class="irac-field">
+        <label><span class="irac-badge">A</span> Application</label>
+        <textarea id="irac-application" placeholder="Apply the rule to the specific facts..."></textarea>
+      </div>
+      <div class="irac-field">
+        <label><span class="irac-badge">C</span> Conclusion</label>
+        <textarea id="irac-conclusion" placeholder="State your conclusion clearly and without hedging..."></textarea>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-primary" id="submit-irac-btn" onclick="submitIRAC()">Submit for Feedback</button>
+        <button class="btn-secondary" onclick="clearIRAC()">Clear</button>
+      </div>
+
+      <div id="irac-feedback"></div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// ─── CLOUDFLARE WORKER PROXY ───────────────────────────────────────────────
+const PROXY_URL = 'https://summer-rain-9a7e.markreidapu.workers.dev';
+
+// ─── SCORE STATE ──────────────────────────────────────────────────────────
+let scoreCorrect = 0;
+let scoreIncorrect = 0;
+
+function updateScore(correct) {
+  if (correct) scoreCorrect++;
+  else scoreIncorrect++;
+  document.getElementById('score-correct').textContent = scoreCorrect;
+  document.getElementById('score-incorrect').textContent = scoreIncorrect;
+}
+
+function resetScore() {
+  scoreCorrect = 0; scoreIncorrect = 0;
+  document.getElementById('score-correct').textContent = '0';
+  document.getElementById('score-incorrect').textContent = '0';
+}
+
+// ─── TAB SWITCHING ────────────────────────────────────────────────────────
+function switchTab(tab) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ─── MBE QUESTION BANK ───────────────────────────────────────────────────
+const questionBank = {
+  lucy: [
+    {
+      q: "W.O. Lucy sued A.H. Zehmer for specific performance of a contract to sell a farm. Zehmer claimed he was drunk and joking when he wrote the agreement on a restaurant receipt. The court found Zehmer had appeared sober and had negotiated seriously. Under the objective theory of contract formation, which of the following BEST states the governing legal standard?",
+      options: [
+        "A contract is formed when a party subjectively intends to be bound.",
+        "A contract is formed based on the outward expression of the parties as a reasonable person would interpret it.",
+        "A contract is voidable if either party was intoxicated at the time of signing.",
+        "A written agreement on informal paper cannot constitute a valid contract."
+      ],
+      correct: 1,
+      explanation: "The objective theory of contracts — applied by the court in Lucy v. Zehmer — holds that intent is judged by outward expression, not secret subjective intent. Because Zehmer appeared sober and negotiated the terms seriously, the court found a valid contract. Option A is wrong because it describes the subjective theory, which courts reject. Option C is a misstatement of law — intoxication is a defense only when so severe as to prevent understanding, and here Zehmer appeared coherent. Option D is incorrect; courts regularly enforce agreements on informal writings."
+    },
+    {
+      q: "After the Lucy v. Zehmer decision, suppose Zehmer argues that no consideration existed because he received only $50,000 for a farm worth far more. Under basic contract law, how should a court analyze this argument?",
+      options: [
+        "The argument succeeds because consideration must be adequate to the value exchanged.",
+        "The argument fails because courts do not inquire into the adequacy of consideration.",
+        "The argument succeeds because gross inadequacy of consideration voids any contract.",
+        "The argument fails because consideration requires only a written acknowledgment of value."
+      ],
+      correct: 1,
+      explanation: "Courts apply a 'sufficiency' rather than 'adequacy' test for consideration. So long as something of legal value is bargained for and given, the court will not second-guess whether the deal was economically fair. $50,000 constitutes legally sufficient consideration regardless of the farm's market value. Option A incorrectly conflates adequacy with sufficiency. Option C overstates the doctrine — gross inadequacy may be evidence of fraud or duress, but does not void a contract automatically. Option D misstates the rule entirely."
+    },
+    {
+      q: "Suppose Lucy had never paid or tendered the $50,000 at the time he sought specific performance. Which of the following is MOST accurate regarding his ability to enforce the contract?",
+      options: [
+        "Lucy cannot seek specific performance because he never performed his own contractual obligation.",
+        "Lucy may seek specific performance because the duty to pay arises simultaneously with Zehmer's duty to convey.",
+        "Lucy may seek specific performance only if he can show Zehmer was unjustly enriched.",
+        "Lucy cannot seek specific performance because the contract lacked a closing date."
+      ],
+      correct: 1,
+      explanation: "In bilateral contracts involving the simultaneous exchange of performance and payment, neither party's duty is a condition precedent to the other's — they are concurrent conditions. Lucy's tender of payment and Zehmer's conveyance of title were meant to occur simultaneously, so Lucy's failure to pre-pay did not bar him from seeking specific performance. Option A incorrectly treats Lucy's payment as a condition precedent. Option C introduces unjust enrichment, an equitable doctrine irrelevant here. Option D is a distractor; absence of a closing date affects interpretation, not enforceability."
+    }
+  ],
+
+  hawkins: [
+    {
+      q: "In Hawkins v. McGee, Dr. McGee promised to give George Hawkins a 'one hundred percent perfect hand' through a skin graft operation. The operation failed and left Hawkins's hand worse than before. The court awarded expectation damages. Which of the following BEST describes the expectation damages measure?",
+      options: [
+        "The cost of all medical expenses incurred as a result of the failed surgery.",
+        "The difference between the value of the promised perfect hand and the value of the hand as it exists after surgery.",
+        "Compensation for the pain and suffering caused by the failed operation.",
+        "Nominal damages only, because the promise was made by a physician rather than a commercial party."
+      ],
+      correct: 1,
+      explanation: "Expectation damages place the non-breaching party in the position they would have been in had the contract been performed. Here, Hawkins was promised a perfect hand. The proper measure is the difference in value between what was promised (a perfect hand) and what was delivered (a scarred, hairy hand). Option A describes reliance damages, not expectation damages. Option C — pain and suffering — was explicitly excluded by the New Hampshire court because it arose from the consensual operation itself, not the breach. Option D is incorrect; courts enforce physicians' contractual warranties when clearly made."
+    },
+    {
+      q: "If Hawkins had sued in tort for medical malpractice rather than breach of contract, which measure of recovery would MOST likely differ from the contract claim?",
+      options: [
+        "Tort would exclude recovery for economic losses entirely.",
+        "Tort would allow recovery for pain and suffering from the operation itself, which was excluded under contract.",
+        "Tort would limit recovery to the cost of undoing the surgical harm.",
+        "Tort and contract claims would produce identical damages in this case."
+      ],
+      correct: 1,
+      explanation: "The key distinction the Hawkins court drew was that pain and suffering from the operation itself was not recoverable in contract because it was an expected incident of the procedure. In a tort claim for negligence or malpractice, pain and suffering is a standard compensable element. Thus, a tort claim would likely produce a different — and potentially higher — damages award. Options A and C misstate tort damages doctrine. Option D is incorrect given the pain-and-suffering distinction."
+    }
+  ],
+
+  marbury: [
+    {
+      q: "In Marbury v. Madison, Chief Justice Marshall held that Section 13 of the Judiciary Act of 1789 was unconstitutional. On which ground did Marshall base this conclusion?",
+      options: [
+        "Congress exceeded its Article I powers by expanding the Senate's advice-and-consent role.",
+        "Section 13 purported to grant the Supreme Court original jurisdiction beyond what Article III permitted.",
+        "The President had absolute discretion in commissioning federal officers, which Congress could not limit.",
+        "The Supreme Court lacked authority to review acts of the executive branch."
+      ],
+      correct: 1,
+      explanation: "Marshall held that Article III of the Constitution sets the outer boundaries of the Supreme Court's original jurisdiction, and Congress cannot expand that jurisdiction by statute. Section 13 purported to authorize the Court to issue writs of mandamus in original proceedings — a power not enumerated in Article III. Because a statute conflicting with the Constitution must yield, Section 13 was void. Options A, C, and D misstate Marshall's reasoning; the decision is notable precisely because it asserted judicial power to invalidate Congressional acts, not executive acts per se."
+    },
+    {
+      q: "Marbury v. Madison established the doctrine of judicial review. Which of the following MOST accurately captures the constitutional basis Marshall articulated for that doctrine?",
+      options: [
+        "The Supremacy Clause expressly grants courts power to void unconstitutional statutes.",
+        "The nature of a written constitution implies that courts, whose duty is to say what the law is, must give the Constitution priority over ordinary legislation.",
+        "Article III grants the Supreme Court supervisory authority over all branches of government.",
+        "Judicial review was established by precedent in English common law and incorporated into American practice."
+      ],
+      correct: 1,
+      explanation: "Marshall's argument was structural and logical: if the Constitution is the supreme law, and courts interpret law, then courts must have authority to refuse to enforce statutes that conflict with it. He did not rely on an express constitutional grant of judicial review. Option A overstates the Supremacy Clause's role in Marshall's reasoning. Option C misstates Article III. Option D is historically inaccurate — English courts did not exercise judicial review over Parliament."
+    },
+    {
+      q: "Marbury argued he had a vested right to his commission as justice of the peace and that mandamus was appropriate. The Court agreed on the merits but denied relief. What was the Court's stated reason for denying the writ?",
+      options: [
+        "The Court lacked subject matter jurisdiction because Marbury was not a citizen.",
+        "Granting the writ would violate separation of powers by directing the executive branch.",
+        "The Court lacked jurisdiction to hear the case in its original capacity because Section 13 was unconstitutional.",
+        "Marbury had failed to exhaust administrative remedies before petitioning the Supreme Court."
+      ],
+      correct: 2,
+      explanation: "Marshall famously found that Marbury had a right to his commission and that mandamus was the appropriate remedy — but then held the Court lacked jurisdiction to grant it in an original proceeding, because Section 13's purported expansion of original jurisdiction was unconstitutional. This forced the Court to dismiss for want of jurisdiction. Marshall thus avoided a direct confrontation with the Jefferson administration while establishing judicial review. Options A, B, and D are incorrect and do not reflect Marshall's stated reasoning."
+    }
+  ],
+
+  dudley: [
+    {
+      q: "In R v. Dudley & Stephens, three shipwreck survivors killed and ate the cabin boy, Richard Parker, to survive. The court rejected the defense of necessity. Which principle BEST explains the court's rejection?",
+      options: [
+        "The necessity defense is unavailable in English law under any circumstances.",
+        "The defendants had alternative means of survival they failed to pursue.",
+        "The necessity defense cannot justify the intentional killing of an innocent person to preserve others' lives.",
+        "Necessity is only available when the victim consents to the sacrifice."
+      ],
+      correct: 2,
+      explanation: "The court held that no necessity, however extreme, can justify the deliberate killing of an innocent and non-threatening person to save others. The decision reflects a categorical rule: innocent life may not be instrumentalized. Option A overstates — necessity can apply in other contexts. Option B was not the basis of the holding; the court assumed no alternatives existed. Option D is incorrect; consent is not a recognized element of a necessity defense, and in any case Parker had not consented."
+    },
+    {
+      q: "Dudley & Stephens were convicted of murder and sentenced to death, later commuted to six months. A utilitarian philosopher argues the killing was morally justified because it saved two lives at the cost of one. How would the court's reasoning MOST directly respond to this argument?",
+      options: [
+        "The court would agree the outcome was utility-maximizing but hold that law must be based on moral consensus.",
+        "The court would hold that law cannot be reduced to utilitarian calculation when it comes to deliberate killing of innocents.",
+        "The court would defer to Parliament to decide whether utilitarian necessity should be codified as a defense.",
+        "The court would note that utilitarian analysis requires certainty of outcome, which was absent here."
+      ],
+      correct: 1,
+      explanation: "The court's reasoning was explicitly anti-utilitarian in this context. Lord Coleridge held that accepting a necessity defense for murder would be dangerous and unprincipled — it would license private individuals to make life-or-death calculations that the law does not permit. The decision reflects a deontological constraint: certain acts (killing innocents) are categorically prohibited regardless of aggregate outcomes. Options A, C, and D do not capture the thrust of the court's reasoning."
+    }
+  ],
+
+  cunningham: [
+    {
+      q: "In R v. Cunningham, the defendant ripped a gas meter from a wall to steal coins and thereby allowed gas to seep into a neighboring house, endangering the occupant. The court quashed his conviction under the Offences Against the Person Act 1861. What was the court's central holding regarding mens rea?",
+      options: [
+        "The defendant lacked mens rea because he did not intend any harm to the neighbor.",
+        "'Maliciously' in criminal statutes requires either intent to cause the harm or subjective recklessness as to that harm.",
+        "'Maliciously' in criminal statutes is satisfied by proof of general wickedness or immoral motive.",
+        "The defendant could not be convicted because the harm was caused indirectly."
+      ],
+      correct: 1,
+      explanation: "The Court of Criminal Appeal held that 'maliciously' in the 1861 Act required proof that the defendant either intended the precise harm caused, or was subjectively reckless — meaning he actually foresaw the risk and nonetheless took it. Cunningham did not foresee the gas endangering his neighbor, so malice was not established. Option A is partially correct in outcome but wrong in legal formulation — recklessness, not just intent, could satisfy malice. Option C describes an older and incorrect interpretation the court rejected. Option D misstates the holding."
+    },
+    {
+      q: "Following Cunningham, if a defendant claims he genuinely did not foresee a risk that an ordinary person obviously would have foreseen, which of the following is MOST accurate under Cunningham's subjective recklessness standard?",
+      options: [
+        "The defendant is guilty because an objective standard applies to recklessness.",
+        "The defendant is not guilty of a 'malicious' offense because he lacked subjective awareness of the risk.",
+        "The defendant's failure to foresee an obvious risk is itself evidence of malice.",
+        "The defendant is guilty if the risk was unreasonable, regardless of awareness."
+      ],
+      correct: 1,
+      explanation: "Cunningham established a subjective standard for recklessness: the defendant must have actually foreseen the risk. If he genuinely did not foresee it — however unreasonably — he lacks the mens rea for a 'malicious' offense. This is contrasted with the objective Caldwell recklessness standard (later overruled in R v. G), which asked what a reasonable person would have foreseen. Options A, C, and D all describe objective or hybrid standards inconsistent with Cunningham's holding."
+    }
+  ],
+
+  brown: [
+    {
+      q: "In Brown v. Board of Education, the Supreme Court overruled Plessy v. Ferguson. The Court's central holding concerned which constitutional provision?",
+      options: [
+        "The Due Process Clause of the Fifth Amendment.",
+        "The Equal Protection Clause of the Fourteenth Amendment.",
+        "The Privileges or Immunities Clause of the Fourteenth Amendment.",
+        "The Commerce Clause of Article I."
+      ],
+      correct: 1,
+      explanation: "The Court held that racially segregated public schools violated the Equal Protection Clause of the Fourteenth Amendment. Chief Justice Warren wrote that 'separate but equal' had no place in public education because segregation inherently generated a sense of inferiority in Black children that impaired their educational opportunity. Option A is incorrect — the Fifth Amendment Due Process claim was addressed in the companion case Bolling v. Sharpe (D.C. schools). Options C and D are not the basis of the holding."
+    },
+    {
+      q: "In overruling Plessy v. Ferguson, the Brown Court notably relied in part on social science evidence — particularly the 'doll studies' of psychologists Kenneth and Mamie Clark. Which of the following BEST characterizes the doctrinal significance of this methodology?",
+      options: [
+        "It established that constitutional interpretation must be grounded in empirical psychology.",
+        "It supported the Court's finding that segregation caused harm to Black children, reinforcing the conclusion that 'separate' was inherently unequal.",
+        "It was essential to the holding; without the psychological evidence the Court would have upheld Plessy.",
+        "It replaced the textual analysis that had been central to Fourteenth Amendment jurisprudence."
+      ],
+      correct: 1,
+      explanation: "The psychological evidence was used to support — not replace — the legal analysis. It illustrated concrete harm caused by segregation, buttressing the Court's conclusion that separateness was inherently unequal regardless of physical facilities. The holding did not require the social science to stand; the Equal Protection analysis could stand independently. Options A, C, and D overstate the role of the empirical evidence in the doctrinal framework."
+    },
+    {
+      q: "Brown v. Board of Education addressed public school segregation. Which of the following presents the STRONGEST argument that Brown's reasoning should NOT be extended to a private school that excludes students based on race?",
+      options: [
+        "The Fourteenth Amendment applies only to state action, and a private school is not a state actor.",
+        "Private schools are protected by the First Amendment right of expressive association.",
+        "Brown was limited to elementary education and does not apply to higher education.",
+        "Private discrimination was addressed exclusively by the Civil Rights Act of 1964, not the Constitution."
+      ],
+      correct: 0,
+      explanation: "The Fourteenth Amendment's Equal Protection Clause applies only to state action — government entities. A genuinely private school is not a state actor and therefore cannot be compelled by Brown to desegregate through constitutional litigation alone. Option B has some limited application but is not the strongest threshold argument. Option C is incorrect — Brown's reasoning was extended to higher education. Option D is partially correct (the Civil Rights Act does govern private schools receiving federal funds) but does not fully address the constitutional question."
+    }
+  ],
+
+  garratt: [
+    {
+      q: "In Garratt v. Dailey, a five-year-old boy pulled a chair from under an adult who was about to sit, causing injury. The court analyzed whether the child had committed battery. What element was central to the court's analysis?",
+      options: [
+        "Whether the child had the capacity to form any legal intent at his age.",
+        "Whether the child knew with substantial certainty that the plaintiff would attempt to sit where the chair had been.",
+        "Whether the child acted maliciously or with ill will toward the plaintiff.",
+        "Whether the child's parents were negligent in supervising him."
+      ],
+      correct: 1,
+      explanation: "Battery requires intentional contact — specifically, that the defendant either desired the contact or knew with substantial certainty it would result. The court in Garratt remanded to determine whether Brian Dailey knew with substantial certainty that Ruth Garratt would attempt to sit where he had moved the chair. The 'substantial certainty' standard lowers the bar below specific desire to cause harm. Option A is irrelevant — young children can commit battery. Option C is wrong — malice is not required for battery. Option D addresses negligence, not intentional tort."
+    },
+    {
+      q: "The Garratt court adopted the 'substantial certainty' standard for intent in battery. How does this standard differ from a negligence standard?",
+      options: [
+        "Negligence requires proof of harmful motive; substantial certainty does not.",
+        "Substantial certainty requires the defendant to have actually foreseen contact as practically inevitable, while negligence requires only that a reasonable person would have foreseen some risk of harm.",
+        "There is no meaningful difference; both standards focus on what a reasonable person would have known.",
+        "Negligence is a stricter standard than substantial certainty because it imposes liability without fault."
+      ],
+      correct: 1,
+      explanation: "The substantial certainty test for intent focuses on the defendant's subjective state of mind — did they know contact was essentially inevitable? Negligence, by contrast, is objective — would a reasonable person have foreseen an unreasonable risk? A defendant can be negligent without knowing contact would result, and can escape negligence liability while still satisfying the substantial certainty test. Options A, C, and D each misstate one or both standards."
+    }
+  ],
+
+  palsgraf: [
+    {
+      q: "In Palsgraf v. Long Island Railroad, a guard helped a passenger board a moving train, dislodging a package of fireworks that exploded and injured Mrs. Palsgraf standing at the other end of the platform. Judge Cardozo, writing for the majority, held for the railroad. On what basis?",
+      options: [
+        "The railroad employees were not negligent because helping a passenger board is a routine act.",
+        "Negligence requires a duty of care owed to the plaintiff, and Mrs. Palsgraf was not within the foreseeable zone of danger from the guard's act.",
+        "Proximate cause was broken by the intervening act of the passenger carrying the fireworks.",
+        "Mrs. Palsgraf assumed the risk by standing on a busy railroad platform."
+      ],
+      correct: 1,
+      explanation: "Cardozo's majority opinion grounded the holding in duty: negligence is relational, meaning a defendant owes a duty only to those foreseeably endangered by the negligent act. Because Mrs. Palsgraf — standing far away with no visible connection to the package — was not within the foreseeable zone of danger, the railroad owed her no duty, and without duty there can be no negligence. Option A is incorrect — the guard's act may have been negligent as to the passenger. Option C describes Judge Andrews's dissenting approach. Option D introduces assumption of risk, which was not the basis of Cardozo's holding."
+    },
+    {
+      q: "Judge Andrews dissented in Palsgraf and argued that the railroad should be liable. Which of the following BEST represents Andrews's reasoning?",
+      options: [
+        "Negligence toward anyone creates liability to the world at large, limited only by proximate cause analysis.",
+        "The railroad was strictly liable as a common carrier for any harm occurring on its premises.",
+        "Mrs. Palsgraf was a foreseeable plaintiff because railroad platforms are crowded public spaces.",
+        "The guard's act was the but-for cause of the injury, and but-for causation establishes liability."
+      ],
+      correct: 0,
+      explanation: "Andrews argued that when a negligent act occurs, the wrongdoer is responsible to anyone injured as a proximate result — not just those in the foreseeable zone of danger. Rather than limiting liability through duty, Andrews would use proximate cause as the limiting principle. This produces a wider potential class of plaintiffs but allows courts to cut off liability when the causal chain becomes too attenuated. Options B, C, and D mischaracterize Andrews's actual reasoning."
+    },
+    {
+      q: "Palsgraf is often taught alongside the concept of 'proximate cause.' Under Cardozo's framework, why is proximate cause analysis largely unnecessary in the case?",
+      options: [
+        "Because the explosion was an unforeseeable superseding cause that broke the causal chain.",
+        "Because Cardozo resolved the case at the duty stage — without a duty owed to Mrs. Palsgraf, the proximate cause question never arises.",
+        "Because but-for causation was not established since the guard did not directly cause the explosion.",
+        "Because proximate cause is only relevant in strict liability cases, not negligence."
+      ],
+      correct: 1,
+      explanation: "Cardozo's analytical approach resolves negligence claims at the threshold duty question. If no duty is owed to this plaintiff, the analysis ends — causation (both actual and proximate) is irrelevant because there is no viable negligence claim to begin with. Andrews's dissent, by contrast, would get to proximate cause. This is why Palsgraf is used to illustrate the difference between duty-based and proximate-cause-based approaches to limiting negligence liability."
+    }
+  ]
+};
+
+// ─── MBE STATE ─────────────────────────────────────────────────────────────
+let currentCase = '';
+let currentQIndex = 0;
+let questionOrder = [];
+let answered = false;
+
+function loadQuestion() {
+  const sel = document.getElementById('case-select').value;
+  if (!sel) {
+    document.getElementById('mbe-content').innerHTML = `
+      <div class="empty-state">
+        <div class="icon">⚖️</div>
+        <p>Select a case above to begin practice.</p>
+      </div>`;
+    return;
+  }
+  if (sel !== currentCase) {
+    currentCase = sel;
+    questionOrder = shuffleArray([...Array(questionBank[sel].length).keys()]);
+    currentQIndex = 0;
+  }
+  renderQuestion();
+}
+
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function renderQuestion() {
+  answered = false;
+  const bank = questionBank[currentCase];
+  if (!bank || bank.length === 0) return;
+  const qi = questionOrder[currentQIndex % questionOrder.length];
+  const q = bank[qi];
+
+  const optionsHTML = q.options.map((opt, i) => `
+    <button class="option-btn" onclick="selectAnswer(${i}, ${q.correct})" id="opt-${i}">
+      <span class="option-label">${String.fromCharCode(65+i)}.</span>
+      <span>${opt}</span>
+    </button>
+  `).join('');
+
+  document.getElementById('mbe-content').innerHTML = `
+    <div class="question-card" id="question-card">
+      <div class="q-number">Question ${(currentQIndex % bank.length) + 1} of ${bank.length} · ${getCaseName(currentCase)}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="options">${optionsHTML}</div>
+      <div id="explanation-area"></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" id="next-btn" onclick="nextQuestion()" style="display:none;">Next Question →</button>
+    </div>
+  `;
+}
+
+function getCaseName(key) {
+  const names = {
+    lucy: 'Lucy v. Zehmer', hawkins: 'Hawkins v. McGee',
+    marbury: 'Marbury v. Madison', dudley: 'R v. Dudley & Stephens',
+    cunningham: 'R v. Cunningham', brown: 'Brown v. Board of Education',
+    garratt: 'Garratt v. Dailey', palsgraf: 'Palsgraf v. Long Island Railroad'
+  };
+  return names[key] || key;
+}
+
+function selectAnswer(selected, correct) {
+  if (answered) return;
+  answered = true;
+
+  const bank = questionBank[currentCase];
+  const qi = questionOrder[currentQIndex % questionOrder.length];
+  const q = bank[qi];
+  const isCorrect = selected === correct;
+
+  updateScore(isCorrect);
+
+  document.querySelectorAll('.option-btn').forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === correct) btn.classList.add(isCorrect && i === selected ? 'correct' : 'reveal-correct');
+    if (i === selected && !isCorrect) btn.classList.add('incorrect');
+  });
+  if (isCorrect) document.getElementById('opt-' + selected).classList.add('correct');
+
+  const expArea = document.getElementById('explanation-area');
+  expArea.innerHTML = `
+    <div class="explanation-box">
+      <div class="ex-label">${isCorrect ? '✓ Correct' : '✗ Incorrect'} — Explanation</div>
+      <div>${q.explanation}</div>
+    </div>`;
+
+  document.getElementById('next-btn').style.display = 'inline-block';
+}
+
+function nextQuestion() {
+  currentQIndex++;
+  if (currentQIndex % questionOrder.length === 0) {
+    questionOrder = shuffleArray([...Array(questionBank[currentCase].length).keys()]);
+  }
+  renderQuestion();
+}
+
+// ─── WRITTEN ANALYSIS SCENARIOS ─────────────────────────────────────────
+const writtenScenarios = {
+  lucy_written: {
+    title: "Lucy v. Zehmer — Written Analysis",
+    text: `On a Saturday evening, Arthur visits a local diner where he runs into his neighbor, Bernard. After several drinks, Arthur says, "I'll sell you my 200-acre farm for $85,000." Bernard immediately replies, "Deal — let's write it up." Arthur laughs and scribbles the terms on a paper napkin, which both men sign. The next morning, Arthur calls Bernard to say he was joking and refuses to convey the property. Bernard had not been drinking and genuinely believed a contract had been formed. Bernard seeks specific performance.
+
+Analyze whether a binding contract was formed. Apply the objective theory of contract formation. Address consideration and the availability of specific performance as a remedy.`
+  },
+  palsgraf_written: {
+    title: "Palsgraf — Negligence & Duty",
+    text: `Maria works as a security guard at a busy downtown train station. While on duty, she notices a man sprinting toward a departing train. She reaches out and grabs his backpack to help pull him aboard. The backpack, unknown to Maria, contains several pressurized aerosol cans. The cans are dislodged, fall to the platform, and explode loudly. The noise causes a crowd to panic; in the chaos, a display rack collapses and injures Sandra, who was standing 40 feet away purchasing a ticket.
+
+Sandra sues the train station for negligence, arguing that Maria's act of grabbing the backpack caused her injuries. Apply both the Cardozo duty analysis and the Andrews proximate cause analysis. Reach a conclusion under each framework and state which you find more persuasive and why.`
+  },
+  garratt_written: {
+    title: "Garratt v. Dailey — Intentional Tort",
+    text: `During a family barbecue, twelve-year-old Kevin watches his elderly aunt, Helen, begin to lower herself into a lawn chair. Kevin quickly slides the chair a few feet to the left — he claims he intended only to reposition it so Helen would have a better view. Helen, mid-descent, misses the chair entirely and falls hard onto the patio, breaking her hip. Kevin's parents testify he is generally a careful, considerate child.
+
+Helen sues Kevin for battery. Kevin denies any intent to harm his aunt and says he thought she would simply sit in the repositioned chair. Analyze whether Kevin committed battery under the substantial certainty standard. Address the relevance of Kevin's stated intent and his age.`
+  },
+  hawkins_written: {
+    title: "Hawkins v. McGee — Contract Damages",
+    text: `Dr. Novak, a plastic surgeon, tells his patient James that he can "guarantee a perfect result" from a rhinoplasty procedure and that James will be "100% satisfied or your money back." James agrees to the surgery. The procedure is performed without negligence, but the outcome is poor — James's nose is asymmetrical and he requires corrective surgery. James's pre-surgery nose, while imperfect, was functional and caused him no pain. The corrective surgery will cost $8,000.
+
+James sues Dr. Novak for breach of contract. Analyze whether Dr. Novak's statements constitute an enforceable contractual warranty. If so, calculate and explain the proper measure of expectation damages. Address whether James is also entitled to recover the pain and suffering from the original surgery.`
+  },
+  dudley_written: {
+    title: "Dudley & Stephens — Necessity Defense",
+    text: `Three survivors of a shipwreck — Chen, Park, and Diaz — have been adrift on a lifeboat for 19 days with no food and only rainwater. Diaz, the youngest and weakest, has fallen unconscious and appears near death. Chen and Park, fearing they will all perish, make a calculated decision: they kill Diaz and consume his body to survive. They are rescued four days later.
+
+Chen and Park are charged with murder. They raise the defense of necessity. Analyze the necessity defense as applied to the deliberate killing of an innocent person. Draw on the reasoning in R v. Dudley & Stephens. Address both the legal outcome and the strongest moral counterargument to the court's position.`
+  }
+};
+
+let currentScenario = 'lucy_written';
+
+function loadScenario(key) {
+  currentScenario = key;
+  document.querySelectorAll('.scenario-chip').forEach(c => c.classList.remove('active'));
+  event.target.classList.add('active');
+  const sc = writtenScenarios[key];
+  document.getElementById('scenario-text').textContent = sc.text;
+  clearIRAC();
+}
+
+function clearIRAC() {
+  ['irac-issue','irac-rule','irac-application','irac-conclusion'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('irac-feedback').innerHTML = '';
+}
+
+async function submitIRAC() {
+  const issue = document.getElementById('irac-issue').value.trim();
+  const rule = document.getElementById('irac-rule').value.trim();
+  const application = document.getElementById('irac-application').value.trim();
+  const conclusion = document.getElementById('irac-conclusion').value.trim();
+
+  if (!issue && !rule && !application && !conclusion) {
+    document.getElementById('irac-feedback').innerHTML = `
+      <div class="feedback-box">
+        <div class="fb-label">Note</div>
+        Please complete at least one section before submitting.
+      </div>`;
+    return;
+  }
+
+  const btn = document.getElementById('submit-irac-btn');
+  btn.disabled = true;
+  btn.textContent = 'Analyzing...';
+
+  document.getElementById('irac-feedback').innerHTML = `
+    <div class="feedback-box">
+      <div class="fb-label">Feedback</div>
+      <span class="loading-dots">Reviewing your analysis</span>
+    </div>`;
+
+  const sc = writtenScenarios[currentScenario];
+  const prompt = `You are a California Bar exam coach and experienced attorney. A student has submitted an IRAC analysis for the following fact pattern:
+
+FACT PATTERN:
+${sc.text}
+
+STUDENT'S ANALYSIS:
+Issue: ${issue || '[not completed]'}
+Rule: ${rule || '[not completed]'}
+Application: ${application || '[not completed]'}
+Conclusion: ${conclusion || '[not completed]'}
+
+Provide structured feedback on:
+1. IRAC completeness — did each section fulfill its function?
+2. Legal accuracy — is the rule stated correctly? Is the application sound?
+3. English precision — flag any vague hedging language (e.g., "I think," "maybe," "kind of," "it seems like") and suggest confident, precise alternatives. Note one strength in their English expression.
+4. Conclusion — did they commit to a clear answer, or hedge?
+
+Be direct, specific, and challenging — like an experienced attorney reviewing a junior associate's memo. Do not be harsh, but do not be soft. Point to specific phrases from their analysis. Keep your response to 200–280 words.`;
+
+  try {
+    const res = await fetch(PROXY_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+
+    const data = await res.json();
+    const feedback = data.content.map(b => b.text || '').join('');
+
+    document.getElementById('irac-feedback').innerHTML = `
+      <div class="feedback-box">
+        <div class="fb-label">Attorney Feedback</div>
+        ${feedback}
+      </div>`;
+  } catch(e) {
+    document.getElementById('irac-feedback').innerHTML = `
+      <div class="feedback-box">
+        <div class="fb-label">Connection Error</div>
+        Unable to reach the server. Please check your connection and try again.
+      </div>`;
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'Submit for Feedback';
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────
+loadScenario('lucy_written');
+</script>
+</body>
+</html>
