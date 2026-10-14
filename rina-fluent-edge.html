@@ -22,153 +22,545 @@
     --shadow: rgba(26,26,46,0.12);
     --shadow-strong: rgba(26,26,46,0.22);
   }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--parchment); color: var(--ink); min-height: 100vh; background-image: radial-gradient(ellipse at 10% 0%, rgba(201,168,76,0.08) 0%, transparent 50%), radial-gradient(ellipse at 90% 100%, rgba(139,26,26,0.06) 0%, transparent 50%); }
-  header { background: var(--ink); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; box-shadow: 0 2px 20px var(--shadow-strong); position: sticky; top: 0; z-index: 100; }
-  .logo { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.15rem; letter-spacing: 0.04em; font-weight: 600; }
-  .logo span { color: rgba(201,168,76,0.5); font-weight: 400; font-style: italic; font-size: 0.9rem; margin-left: 0.5rem; }
-  .student-tag { font-size: 0.78rem; color: rgba(247,244,239,0.45); letter-spacing: 0.08em; text-transform: uppercase; }
-  .tab-bar { background: var(--ink); border-top: 1px solid rgba(201,168,76,0.2); display: flex; padding: 0 2rem; gap: 0; }
-  .tab-btn { background: none; border: none; color: rgba(247,244,239,0.45); font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.85rem 1.4rem; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; position: relative; top: 1px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--parchment);
+    color: var(--ink);
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse at 10% 0%, rgba(201,168,76,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 100%, rgba(139,26,26,0.06) 0%, transparent 50%);
+  }
+
+  header {
+    background: var(--ink);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    box-shadow: 0 2px 20px var(--shadow-strong);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+    font-weight: 600;
+  }
+
+  .logo span {
+    color: rgba(201,168,76,0.5);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+  }
+
+  .student-tag {
+    font-size: 0.78rem;
+    color: rgba(247,244,239,0.45);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .tab-bar {
+    background: var(--ink);
+    border-top: 1px solid rgba(201,168,76,0.2);
+    display: flex;
+    padding: 0 2rem;
+  }
+
+  .tab-btn {
+    background: none;
+    border: none;
+    color: rgba(247,244,239,0.45);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.85rem 1.4rem;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    position: relative;
+    top: 1px;
+  }
+
   .tab-btn:hover { color: var(--gold-light); }
   .tab-btn.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
-  main { max-width: 860px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
-  .section-header { margin-bottom: 2rem; border-bottom: 1px solid var(--gold-light); padding-bottom: 1rem; }
-  .section-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--ink); margin-bottom: 0.3rem; }
-  .section-sub { font-size: 0.85rem; color: var(--ink-light); font-weight: 300; }
-  .case-selector { margin-bottom: 2rem; }
-  .case-selector label { display: block; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.6rem; font-weight: 500; }
-  .case-selector select { width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--gold-light); border-radius: 6px; background: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: var(--ink); cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a84c' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; transition: border-color 0.2s; }
-  .case-selector select:focus { outline: none; border-color: var(--gold); }
-  .question-card { background: var(--white); border-radius: 10px; padding: 2rem; box-shadow: 0 2px 16px var(--shadow); margin-bottom: 1.5rem; border-left: 4px solid var(--gold); animation: fadeSlide 0.3s ease; }
-  @keyframes fadeSlide { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-  .q-number { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 0.8rem; }
-  .q-text { font-family: 'Playfair Display', serif; font-size: 1.05rem; line-height: 1.7; color: var(--ink); margin-bottom: 1.5rem; }
+
+  .section-header {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--gold-light);
+    padding-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+
+  .section-sub {
+    font-size: 0.85rem;
+    color: var(--ink-light);
+    font-weight: 300;
+  }
+
+  /* CATEGORY + CASE SELECTORS */
+  .selector-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .selector-group {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .selector-group label {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .selector-group select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid var(--gold-light);
+    border-radius: 6px;
+    background: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    color: var(--ink);
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a84c' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    transition: border-color 0.2s;
+  }
+
+  .selector-group select:focus { outline: none; border-color: var(--gold); }
+
+  /* QUESTION CARD */
+  .question-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 2px 16px var(--shadow);
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--gold);
+    animation: fadeSlide 0.3s ease;
+  }
+
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .q-number {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+
+  .q-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
   .options { display: flex; flex-direction: column; gap: 0.65rem; }
-  .option-btn { display: flex; align-items: flex-start; gap: 0.8rem; padding: 0.9rem 1rem; border: 1.5px solid var(--parchment-dark); border-radius: 7px; background: var(--parchment); cursor: pointer; text-align: left; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; color: var(--ink); transition: all 0.18s; line-height: 1.5; }
+
+  .option-btn {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 0.9rem 1rem;
+    border: 1.5px solid var(--parchment-dark);
+    border-radius: 7px;
+    background: var(--parchment);
+    cursor: pointer;
+    text-align: left;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    color: var(--ink);
+    transition: all 0.18s;
+    line-height: 1.5;
+  }
+
   .option-btn:hover:not(:disabled) { border-color: var(--gold); background: var(--gold-pale); }
   .option-btn:disabled { cursor: default; }
-  .option-label { font-weight: 600; min-width: 1.4rem; color: var(--ink-light); flex-shrink: 0; }
+
+  .option-label {
+    font-weight: 600;
+    min-width: 1.4rem;
+    color: var(--ink-light);
+    flex-shrink: 0;
+  }
+
   .option-btn.correct { border-color: var(--sage); background: #eef4ed; }
   .option-btn.correct .option-label { color: var(--sage); }
   .option-btn.incorrect { border-color: var(--crimson); background: #fdf0f0; }
   .option-btn.incorrect .option-label { color: var(--crimson); }
   .option-btn.reveal-correct { border-color: var(--sage); background: #eef4ed; opacity: 0.7; }
-  .explanation-box { margin-top: 1.5rem; padding: 1.2rem 1.4rem; background: var(--ink); border-radius: 8px; color: var(--parchment); font-size: 0.9rem; line-height: 1.7; animation: fadeSlide 0.3s ease; }
-  .explanation-box .ex-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 0.5rem; }
-  .explanation-box .loading-dots::after { content: '...'; animation: dots 1.2s steps(3, end) infinite; }
-  @keyframes dots { 0%, 33% { content: '.'; } 34%, 66% { content: '..'; } 67%, 100% { content: '...'; } }
-  .btn-row { display: flex; gap: 0.8rem; margin-top: 1.5rem; flex-wrap: wrap; }
-  .btn-primary { background: var(--gold); color: var(--ink); border: none; padding: 0.75rem 1.6rem; border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.04em; cursor: pointer; transition: all 0.18s; }
+
+  .explanation-box {
+    margin-top: 1.5rem;
+    padding: 1.2rem 1.4rem;
+    background: var(--ink);
+    border-radius: 8px;
+    color: var(--parchment);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    animation: fadeSlide 0.3s ease;
+  }
+
+  .explanation-box .ex-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .btn-row {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--ink);
+    border: none;
+    padding: 0.75rem 1.6rem;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+
   .btn-primary:hover { background: #b8962e; }
   .btn-primary:disabled { opacity: 0.5; cursor: default; }
-  .btn-secondary { background: transparent; color: var(--ink-light); border: 1.5px solid var(--parchment-dark); padding: 0.75rem 1.4rem; border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 400; cursor: pointer; transition: all 0.18s; }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink-light);
+    border: 1.5px solid var(--parchment-dark);
+    padding: 0.75rem 1.4rem;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+
   .btn-secondary:hover { border-color: var(--ink-light); color: var(--ink); }
-  .score-bar { display: flex; align-items: center; gap: 1.5rem; background: var(--white); border-radius: 8px; padding: 0.9rem 1.3rem; margin-bottom: 1.5rem; box-shadow: 0 1px 8px var(--shadow); font-size: 0.85rem; }
+
+  .score-bar {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--white);
+    border-radius: 8px;
+    padding: 0.9rem 1.3rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 8px var(--shadow);
+    font-size: 0.85rem;
+  }
+
   .score-item { display: flex; align-items: center; gap: 0.4rem; }
   .score-dot { width: 8px; height: 8px; border-radius: 50%; }
   .score-dot.correct { background: var(--sage); }
   .score-dot.incorrect { background: var(--crimson); }
   .score-count { font-weight: 500; color: var(--ink); }
   .score-label { color: var(--ink-light); font-weight: 300; }
-  .scenario-card { background: var(--white); border-radius: 10px; padding: 2rem; box-shadow: 0 2px 16px var(--shadow); margin-bottom: 1.5rem; border-left: 4px solid var(--crimson); }
-  .scenario-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--crimson); font-weight: 500; margin-bottom: 0.8rem; }
-  .scenario-text { font-family: 'Playfair Display', serif; font-size: 1rem; line-height: 1.75; color: var(--ink); }
-  .irac-area { background: var(--white); border-radius: 10px; padding: 2rem; box-shadow: 0 2px 16px var(--shadow); margin-bottom: 1.5rem; }
-  .irac-area h3 { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--ink); margin-bottom: 1.2rem; }
+
+  /* TAB 2 */
+  .scenario-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 2px 16px var(--shadow);
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--crimson);
+  }
+
+  .scenario-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--crimson);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+
+  .scenario-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--ink);
+  }
+
+  .irac-area {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 2px 16px var(--shadow);
+    margin-bottom: 1.5rem;
+  }
+
+  .irac-area h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--ink);
+    margin-bottom: 1.2rem;
+  }
+
   .irac-field { margin-bottom: 1.2rem; }
-  .irac-field label { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); font-weight: 500; margin-bottom: 0.4rem; }
-  .irac-badge { background: var(--ink); color: var(--gold); font-size: 0.7rem; font-weight: 600; padding: 0.15rem 0.45rem; border-radius: 3px; letter-spacing: 0.06em; }
-  .irac-field textarea { width: 100%; padding: 0.8rem 1rem; border: 1.5px solid var(--parchment-dark); border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; color: var(--ink); background: var(--parchment); resize: vertical; min-height: 80px; line-height: 1.6; transition: border-color 0.2s; }
+
+  .irac-field label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+  }
+
+  .irac-badge {
+    background: var(--ink);
+    color: var(--gold);
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.15rem 0.45rem;
+    border-radius: 3px;
+    letter-spacing: 0.06em;
+  }
+
+  .irac-field textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1.5px solid var(--parchment-dark);
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    color: var(--ink);
+    background: var(--parchment);
+    resize: vertical;
+    min-height: 80px;
+    line-height: 1.6;
+    transition: border-color 0.2s;
+  }
+
   .irac-field textarea:focus { outline: none; border-color: var(--crimson); background: var(--white); }
-  .feedback-box { margin-top: 1.5rem; padding: 1.4rem 1.6rem; background: var(--ink); border-radius: 8px; color: var(--parchment); font-size: 0.9rem; line-height: 1.75; animation: fadeSlide 0.3s ease; white-space: pre-wrap; }
-  .feedback-box .fb-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--crimson-light); font-weight: 500; margin-bottom: 0.7rem; }
-  .scenario-picker { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
-  .scenario-chip { background: var(--white); border: 1.5px solid var(--parchment-dark); border-radius: 20px; padding: 0.45rem 1rem; font-size: 0.82rem; color: var(--ink-light); cursor: pointer; transition: all 0.18s; font-family: 'DM Sans', sans-serif; }
+
+  .feedback-box {
+    margin-top: 1.5rem;
+    padding: 1.4rem 1.6rem;
+    background: var(--ink);
+    border-radius: 8px;
+    color: var(--parchment);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    animation: fadeSlide 0.3s ease;
+    white-space: pre-wrap;
+  }
+
+  .feedback-box .fb-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--crimson-light);
+    font-weight: 500;
+    margin-bottom: 0.7rem;
+  }
+
+  .scenario-picker {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .scenario-chip {
+    background: var(--white);
+    border: 1.5px solid var(--parchment-dark);
+    border-radius: 20px;
+    padding: 0.45rem 1rem;
+    font-size: 0.82rem;
+    color: var(--ink-light);
+    cursor: pointer;
+    transition: all 0.18s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
   .scenario-chip:hover { border-color: var(--crimson); color: var(--crimson); }
   .scenario-chip.active { background: var(--crimson); border-color: var(--crimson); color: var(--white); }
-  .empty-state { text-align: center; padding: 3rem 2rem; color: var(--ink-light); }
+
+  .empty-state {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--ink-light);
+  }
+
   .empty-state .icon { font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.4; }
   .empty-state p { font-size: 0.9rem; line-height: 1.6; max-width: 400px; margin: 0 auto; }
-  @media (max-width: 600px) { header { padding: 0 1rem; } main { padding: 1.5rem 1rem 3rem; } .tab-btn { padding: 0.85rem 0.9rem; font-size: 0.75rem; } .question-card, .scenario-card, .irac-area { padding: 1.4rem; } }
+
+  @media (max-width: 600px) {
+    header { padding: 0 1rem; }
+    main { padding: 1.5rem 1rem 3rem; }
+    .tab-btn { padding: 0.85rem 0.9rem; font-size: 0.75rem; }
+    .question-card, .scenario-card, .irac-area { padding: 1.4rem; }
+    .selector-row { flex-direction: column; }
+  }
 </style>
 </head>
 <body>
+
 <header>
   <div class="logo">Fluent Edge <span>Coaching</span></div>
   <div class="student-tag">Bar Exam Practice · Rina Miyama</div>
 </header>
+
 <div class="tab-bar">
   <button class="tab-btn active" onclick="switchTab('mbe', this)">MBE · Multiple Choice</button>
   <button class="tab-btn" onclick="switchTab('written', this)">Written Analysis · IRAC</button>
 </div>
+
 <main>
+
+  <!-- TAB 1: MBE -->
   <div id="tab-mbe" class="tab-panel active">
     <div class="section-header">
       <div class="section-title">Multistate Bar Examination</div>
-      <div class="section-sub">Select a case to practice. Choose an answer, then read the explanation.</div>
+      <div class="section-sub">Select a category and case, then choose your answer. Read the explanation carefully after each question.</div>
     </div>
+
     <div class="score-bar">
-      <div class="score-item"><div class="score-dot correct"></div><span class="score-count" id="score-correct">0</span><span class="score-label">correct</span></div>
-      <div class="score-item"><div class="score-dot incorrect"></div><span class="score-count" id="score-incorrect">0</span><span class="score-label">incorrect</span></div>
-      <div style="margin-left:auto;"><button class="btn-secondary" onclick="resetScore()" style="padding:0.4rem 0.9rem;font-size:0.78rem;">Reset Score</button></div>
+      <div class="score-item">
+        <div class="score-dot correct"></div>
+        <span class="score-count" id="score-correct">0</span>
+        <span class="score-label">correct</span>
+      </div>
+      <div class="score-item">
+        <div class="score-dot incorrect"></div>
+        <span class="score-count" id="score-incorrect">0</span>
+        <span class="score-label">incorrect</span>
+      </div>
+      <div style="margin-left:auto;">
+        <button class="btn-secondary" onclick="resetScore()" style="padding:0.4rem 0.9rem;font-size:0.78rem;">Reset Score</button>
+      </div>
     </div>
-    <div class="case-selector">
-      <label>Select Case</label>
-      <select id="case-select" onchange="loadQuestion()">
-        <option value="">— Choose a case —</option>
-        <option value="" disabled>───── Package 1 Cases ─────</option>
-        <option value="lucy">Lucy v. Zehmer (Contract Formation)</option>
-        <option value="hawkins">Hawkins v. McGee (Expectation Damages)</option>
-        <option value="marbury">Marbury v. Madison (Judicial Review)</option>
-        <option value="dudley">R v. Dudley &amp; Stephens (Necessity)</option>
-        <option value="cunningham">R v. Cunningham (Mens Rea)</option>
-        <option value="brown">Brown v. Board of Education (Equal Protection)</option>
-        <option value="garratt">Garratt v. Dailey (Intentional Tort)</option>
-        <option value="palsgraf">Palsgraf v. Long Island Railroad (Negligence)</option>
-        <option value="" disabled>───── Package 2 Cases ─────</option>
-        <option value="grimshaw">Grimshaw v. Ford Motor Co. (Products Liability)</option>
-        <option value="katko">Katko v. Briney (Defense of Property)</option>
-        <option value="rylands">Rylands v. Fletcher (Strict Liability)</option>
-        <option value="frigaliment">Frigaliment v. B.N.S. (Contract Interpretation)</option>
-        <option value="hadley">Hadley v. Baxendale (Consequential Damages)</option>
-        <option value="jacobyoungs">Jacob &amp; Youngs v. Kent (Substantial Performance)</option>
-        <option value="lochner">Lochner v. New York (Substantive Due Process)</option>
-      </select>
+
+    <div class="selector-row">
+      <div class="selector-group">
+        <label>Category</label>
+        <select id="category-select" onchange="populateCases()">
+          <option value="">— Choose a category —</option>
+          <option value="contracts">Contracts &amp; Torts</option>
+          <option value="civil">Civil Procedure</option>
+          <option value="criminal">Criminal Law &amp; Procedure</option>
+          <option value="constitutional">Constitutional Law</option>
+        </select>
+      </div>
+      <div class="selector-group">
+        <label>Case</label>
+        <select id="case-select" onchange="loadQuestion()" disabled>
+          <option value="">— Choose a case —</option>
+        </select>
+      </div>
     </div>
+
     <div id="mbe-content">
-      <div class="empty-state"><div class="icon">⚖️</div><p>Select a case above to begin. Questions are drawn from landmark cases covered in your Fluent Edge lessons.</p></div>
+      <div class="empty-state">
+        <div class="icon">⚖️</div>
+        <p>Select a category and case above to begin. Questions are drawn from landmark cases covered in your Fluent Edge lessons.</p>
+      </div>
     </div>
   </div>
+
+  <!-- TAB 2: WRITTEN ANALYSIS -->
   <div id="tab-written" class="tab-panel">
     <div class="section-header">
       <div class="section-title">Written Analysis · IRAC</div>
       <div class="section-sub">Read the fact pattern. Write your analysis using IRAC. Submit for AI feedback on legal reasoning and English precision.</div>
     </div>
+
     <div class="scenario-picker" id="scenario-picker">
       <button class="scenario-chip active" onclick="loadScenario('lucy_written', this)">Lucy v. Zehmer</button>
       <button class="scenario-chip" onclick="loadScenario('palsgraf_written', this)">Palsgraf</button>
       <button class="scenario-chip" onclick="loadScenario('garratt_written', this)">Garratt v. Dailey</button>
       <button class="scenario-chip" onclick="loadScenario('hawkins_written', this)">Hawkins v. McGee</button>
       <button class="scenario-chip" onclick="loadScenario('dudley_written', this)">Dudley &amp; Stephens</button>
-      <button class="scenario-chip" onclick="loadScenario('grimshaw_written', this)">Grimshaw v. Ford</button>
-      <button class="scenario-chip" onclick="loadScenario('frigaliment_written', this)">Frigaliment</button>
-      <button class="scenario-chip" onclick="loadScenario('hadley_written', this)">Hadley v. Baxendale</button>
-      <button class="scenario-chip" onclick="loadScenario('jacobyoungs_written', this)">Jacob &amp; Youngs</button>
-      <button class="scenario-chip" onclick="loadScenario('lochner_written', this)">Lochner v. New York</button>
+      <button class="scenario-chip" onclick="loadScenario('shoe_written', this)">Int'l Shoe</button>
+      <button class="scenario-chip" onclick="loadScenario('miranda_written', this)">Miranda</button>
     </div>
+
     <div id="scenario-display" class="scenario-card">
       <div class="scenario-label">Fact Pattern</div>
       <div class="scenario-text" id="scenario-text">Loading...</div>
     </div>
+
     <div class="irac-area">
       <h3>Your Written Analysis</h3>
-      <div class="irac-field"><label><span class="irac-badge">I</span> Issue</label><textarea id="irac-issue" placeholder="State the legal issue presented by the facts..."></textarea></div>
-      <div class="irac-field"><label><span class="irac-badge">R</span> Rule</label><textarea id="irac-rule" placeholder="State the applicable legal rule or doctrine..."></textarea></div>
-      <div class="irac-field"><label><span class="irac-badge">A</span> Application</label><textarea id="irac-application" placeholder="Apply the rule to the specific facts..."></textarea></div>
-      <div class="irac-field"><label><span class="irac-badge">C</span> Conclusion</label><textarea id="irac-conclusion" placeholder="State your conclusion clearly and without hedging..."></textarea></div>
+      <div class="irac-field">
+        <label><span class="irac-badge">I</span> Issue</label>
+        <textarea id="irac-issue" placeholder="State the legal issue presented by the facts..."></textarea>
+      </div>
+      <div class="irac-field">
+        <label><span class="irac-badge">R</span> Rule</label>
+        <textarea id="irac-rule" placeholder="State the applicable legal rule or doctrine..."></textarea>
+      </div>
+      <div class="irac-field">
+        <label><span class="irac-badge">A</span> Application</label>
+        <textarea id="irac-application" placeholder="Apply the rule to the specific facts..."></textarea>
+      </div>
+      <div class="irac-field">
+        <label><span class="irac-badge">C</span> Conclusion</label>
+        <textarea id="irac-conclusion" placeholder="State your conclusion clearly and without hedging..."></textarea>
+      </div>
       <div class="btn-row">
         <button class="btn-primary" id="submit-irac-btn" onclick="submitIRAC()">Submit for Feedback</button>
         <button class="btn-secondary" onclick="clearIRAC()">Clear</button>
@@ -176,40 +568,509 @@
       <div id="irac-feedback"></div>
     </div>
   </div>
+
 </main>
+
 <script>
-// ─── CLOUDFLARE WORKER PROXY ───────────────────────────────────────────────
 const PROXY_URL = 'https://summer-rain-9a7e.markreidapu.workers.dev';
 
-// ─── SCORE STATE ──────────────────────────────────────────────────────────
-let scoreCorrect = 0;
-let scoreIncorrect = 0;
-function updateScore(correct) { if (correct) scoreCorrect++; else scoreIncorrect++; document.getElementById('score-correct').textContent = scoreCorrect; document.getElementById('score-incorrect').textContent = scoreIncorrect; }
-function resetScore() { scoreCorrect = 0; scoreIncorrect = 0; document.getElementById('score-correct').textContent = '0'; document.getElementById('score-incorrect').textContent = '0'; }
+// ── SCORE ──────────────────────────────────────────────────────────────────
+let scoreCorrect = 0, scoreIncorrect = 0;
+function updateScore(c) {
+  if (c) scoreCorrect++; else scoreIncorrect++;
+  document.getElementById('score-correct').textContent = scoreCorrect;
+  document.getElementById('score-incorrect').textContent = scoreIncorrect;
+}
+function resetScore() {
+  scoreCorrect = 0; scoreIncorrect = 0;
+  document.getElementById('score-correct').textContent = '0';
+  document.getElementById('score-incorrect').textContent = '0';
+}
 
-// ─── TAB SWITCHING ────────────────────────────────────────────────────────
-function switchTab(tab, el) { document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active')); document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active')); document.getElementById('tab-' + tab).classList.add('active'); el.classList.add('active'); }
+// ── TABS ───────────────────────────────────────────────────────────────────
+function switchTab(tab, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  btn.classList.add('active');
+}
 
-// ─── MBE QUESTION BANK ───────────────────────────────────────────────────
-const questionBank = {
-lucy:[{q:"W.O. Lucy sued A.H. Zehmer for specific performance of a contract to sell a farm. Zehmer claimed he was drunk and joking when he wrote the agreement on a restaurant receipt. The court found Zehmer had appeared sober and had negotiated seriously. Under the objective theory of contract formation, which of the following BEST states the governing legal standard?",options:["A contract is formed when a party subjectively intends to be bound.","A contract is voidable if either party was intoxicated at the time of signing.","A contract is formed based on the outward expression of the parties as a reasonable person would interpret it.","A written agreement on informal paper cannot constitute a valid contract."],correct:2,explanation:"The objective theory of contracts — applied by the court in Lucy v. Zehmer — holds that intent is judged by outward expression, not secret subjective intent. Because Zehmer appeared sober and negotiated the terms seriously, the court found a valid contract. Option A describes the subjective theory, which courts reject. Option C is a misstatement — intoxication is a defense only when so severe as to prevent understanding. Option D is incorrect; courts regularly enforce agreements on informal writings."},{q:"After the Lucy v. Zehmer decision, suppose Zehmer argues that no consideration existed because he received only $50,000 for a farm worth far more. Under basic contract law, how should a court analyze this argument?",options:["The argument succeeds because consideration must be adequate to the value exchanged.","The argument fails because courts do not inquire into the adequacy of consideration.","The argument succeeds because gross inadequacy of consideration voids any contract.","The argument fails because consideration requires only a written acknowledgment of value."],correct:1,explanation:"Courts apply a 'sufficiency' rather than 'adequacy' test for consideration. So long as something of legal value is bargained for and given, the court will not second-guess whether the deal was economically fair. $50,000 constitutes legally sufficient consideration regardless of the farm's market value."},{q:"Suppose Lucy had never paid or tendered the $50,000 at the time he sought specific performance. Which of the following is MOST accurate regarding his ability to enforce the contract?",options:["Lucy cannot seek specific performance because he never performed his own contractual obligation.","Lucy may seek specific performance because the duty to pay arises simultaneously with Zehmer's duty to convey.","Lucy may seek specific performance only if he can show Zehmer was unjustly enriched.","Lucy cannot seek specific performance because the contract lacked a closing date."],correct:1,explanation:"In bilateral contracts involving the simultaneous exchange of performance and payment, neither party's duty is a condition precedent to the other's — they are concurrent conditions. Lucy's tender of payment and Zehmer's conveyance of title were meant to occur simultaneously."}],
-hawkins:[{q:"In Hawkins v. McGee, Dr. McGee promised to give George Hawkins a 'one hundred percent perfect hand' through a skin graft operation. The operation failed and left Hawkins's hand worse than before. The court awarded expectation damages. Which of the following BEST describes the expectation damages measure?",options:["The cost of all medical expenses incurred as a result of the failed surgery.","Compensation for the pain and suffering caused by the failed operation.","The difference between the value of the promised perfect hand and the value of the hand as it exists after surgery.","Nominal damages only, because the promise was made by a physician rather than a commercial party."],correct:2,explanation:"Expectation damages place the non-breaching party in the position they would have been in had the contract been performed. Here, Hawkins was promised a perfect hand. The proper measure is the difference in value between what was promised (a perfect hand) and what was delivered (a scarred, hairy hand). Option A describes reliance damages. Option C — pain and suffering — was explicitly excluded. Option D is incorrect."},{q:"If Hawkins had sued in tort for medical malpractice rather than breach of contract, which measure of recovery would MOST likely differ from the contract claim?",options:["Tort would exclude recovery for economic losses entirely.","Tort and contract claims would produce identical damages in this case.","Tort would limit recovery to the cost of undoing the surgical harm.","Tort would allow recovery for pain and suffering from the operation itself, which was excluded under contract."],correct:3,explanation:"The key distinction the Hawkins court drew was that pain and suffering from the operation itself was not recoverable in contract because it was an expected incident of the procedure. In a tort claim, pain and suffering is a standard compensable element."}],
-marbury:[{q:"In Marbury v. Madison, Chief Justice Marshall held that Section 13 of the Judiciary Act of 1789 was unconstitutional. On which ground did Marshall base this conclusion?",options:["Section 13 purported to grant the Supreme Court original jurisdiction beyond what Article III permitted.","Congress exceeded its Article I powers by expanding the Senate's advice-and-consent role.","The President had absolute discretion in commissioning federal officers, which Congress could not limit.","The Supreme Court lacked authority to review acts of the executive branch."],correct:0,explanation:"Marshall held that Article III sets the outer boundaries of the Supreme Court's original jurisdiction, and Congress cannot expand that jurisdiction by statute. Section 13 purported to authorize the Court to issue writs of mandamus in original proceedings — a power not enumerated in Article III."},{q:"Marbury v. Madison established the doctrine of judicial review. Which of the following MOST accurately captures the constitutional basis Marshall articulated?",options:["The Supremacy Clause expressly grants courts power to void unconstitutional statutes.","The nature of a written constitution implies that courts, whose duty is to say what the law is, must give the Constitution priority over ordinary legislation.","Article III grants the Supreme Court supervisory authority over all branches of government.","Judicial review was established by precedent in English common law and incorporated into American practice."],correct:1,explanation:"Marshall's argument was structural and logical: if the Constitution is the supreme law, and courts interpret law, then courts must have authority to refuse to enforce statutes that conflict with it."},{q:"Marbury argued he had a vested right to his commission. The Court agreed on the merits but denied relief. What was the Court's stated reason?",options:["The Court lacked subject matter jurisdiction because Marbury was not a citizen.","Granting the writ would violate separation of powers by directing the executive branch.","The Court lacked jurisdiction to hear the case in its original capacity because Section 13 was unconstitutional.","Marbury had failed to exhaust administrative remedies before petitioning the Supreme Court."],correct:2,explanation:"Marshall found that Marbury had a right to his commission and that mandamus was the appropriate remedy — but then held the Court lacked jurisdiction to grant it in an original proceeding, because Section 13's purported expansion of original jurisdiction was unconstitutional."}],
-dudley:[{q:"In R v. Dudley & Stephens, three shipwreck survivors killed and ate the cabin boy, Richard Parker, to survive. The court rejected the defense of necessity. Which principle BEST explains the court's rejection?",options:["The necessity defense is unavailable in English law under any circumstances.","The defendants had alternative means of survival they failed to pursue.","The necessity defense cannot justify the intentional killing of an innocent person to preserve others' lives.","Necessity is only available when the victim consents to the sacrifice."],correct:2,explanation:"The court held that no necessity, however extreme, can justify the deliberate killing of an innocent and non-threatening person to save others. The decision reflects a categorical rule: innocent life may not be instrumentalized."},{q:"A utilitarian philosopher argues the killing was morally justified because it saved two lives at the cost of one. How would the court's reasoning MOST directly respond?",options:["The court would agree the outcome was utility-maximizing but hold that law must be based on moral consensus.","The court would note that utilitarian analysis requires certainty of outcome, which was absent here.","The court would defer to Parliament to decide whether utilitarian necessity should be codified as a defense.","The court would hold that law cannot be reduced to utilitarian calculation when it comes to deliberate killing of innocents."],correct:3,explanation:"The court's reasoning was explicitly anti-utilitarian in this context. Lord Coleridge held that accepting a necessity defense for murder would be dangerous and unprincipled — it would license private individuals to make life-or-death calculations that the law does not permit."}],
-cunningham:[{q:"In R v. Cunningham, the defendant ripped a gas meter from a wall to steal coins and thereby allowed gas to seep into a neighboring house. The court quashed his conviction. What was the court's central holding regarding mens rea?",options:["The defendant lacked mens rea because he did not intend any harm to the neighbor.","The defendant could not be convicted because the harm was caused indirectly.","'Maliciously' in criminal statutes is satisfied by proof of general wickedness or immoral motive.","'Maliciously' in criminal statutes requires either intent to cause the harm or subjective recklessness as to that harm."],correct:3,explanation:"The Court of Criminal Appeal held that 'maliciously' required proof that the defendant either intended the precise harm caused, or was subjectively reckless — meaning he actually foresaw the risk and nonetheless took it."},{q:"Following Cunningham, if a defendant claims he genuinely did not foresee a risk that an ordinary person obviously would have foreseen, which is MOST accurate under Cunningham's subjective recklessness standard?",options:["The defendant is guilty because an objective standard applies to recklessness.","The defendant's failure to foresee an obvious risk is itself evidence of malice.","The defendant is not guilty of a 'malicious' offense because he lacked subjective awareness of the risk.","The defendant is guilty if the risk was unreasonable, regardless of awareness."],correct:2,explanation:"Cunningham established a subjective standard: the defendant must have actually foreseen the risk. If he genuinely did not foresee it — however unreasonably — he lacks the mens rea for a 'malicious' offense."}],
-brown:[{q:"In Brown v. Board of Education, the Supreme Court overruled Plessy v. Ferguson. The Court's central holding concerned which constitutional provision?",options:["The Due Process Clause of the Fifth Amendment.","The Commerce Clause of Article I.","The Privileges or Immunities Clause of the Fourteenth Amendment.","The Equal Protection Clause of the Fourteenth Amendment."],correct:3,explanation:"The Court held that racially segregated public schools violated the Equal Protection Clause of the Fourteenth Amendment. Chief Justice Warren wrote that 'separate but equal' had no place in public education."},{q:"The Brown Court relied in part on social science evidence — the 'doll studies.' Which BEST characterizes the doctrinal significance?",options:["It established that constitutional interpretation must be grounded in empirical psychology.","It supported the Court's finding that segregation caused harm, reinforcing that 'separate' was inherently unequal.","It was essential to the holding; without it the Court would have upheld Plessy.","It replaced the textual analysis central to Fourteenth Amendment jurisprudence."],correct:1,explanation:"The psychological evidence supported — not replaced — the legal analysis. It illustrated concrete harm caused by segregation. The holding did not require the social science to stand."},{q:"Brown addressed public school segregation. Which presents the STRONGEST argument that Brown should NOT extend to a private school excluding students by race?",options:["The Fourteenth Amendment applies only to state action, and a private school is not a state actor.","Private schools are protected by the First Amendment right of expressive association.","Brown was limited to elementary education and does not apply to higher education.","Private discrimination was addressed exclusively by the Civil Rights Act of 1964."],correct:0,explanation:"The Fourteenth Amendment's Equal Protection Clause applies only to state action. A genuinely private school is not a state actor and cannot be compelled by Brown to desegregate through constitutional litigation alone."}],
-garratt:[{q:"In Garratt v. Dailey, a five-year-old boy pulled a chair from under an adult who was about to sit, causing injury. What element was central to the court's analysis of battery?",options:["Whether the child knew with substantial certainty that the plaintiff would attempt to sit where the chair had been.","Whether the child had the capacity to form any legal intent at his age.","Whether the child acted maliciously or with ill will toward the plaintiff.","Whether the child's parents were negligent in supervising him."],correct:0,explanation:"Battery requires that the defendant either desired the contact or knew with substantial certainty it would result. The 'substantial certainty' standard lowers the bar below specific desire to cause harm."},{q:"How does the 'substantial certainty' standard for intent in battery differ from a negligence standard?",options:["Negligence requires proof of harmful motive; substantial certainty does not.","There is no meaningful difference; both focus on what a reasonable person would have known.","Substantial certainty requires the defendant to have actually foreseen contact as practically inevitable, while negligence requires only that a reasonable person would have foreseen some risk of harm.","Negligence is a stricter standard than substantial certainty because it imposes liability without fault."],correct:2,explanation:"Substantial certainty focuses on the defendant's subjective state of mind — did they know contact was essentially inevitable? Negligence is objective — would a reasonable person have foreseen an unreasonable risk?"}],
-palsgraf:[{q:"In Palsgraf v. Long Island Railroad, a guard helped a passenger board a train, dislodging fireworks that exploded and injured Mrs. Palsgraf at the other end of the platform. Judge Cardozo held for the railroad. On what basis?",options:["The railroad employees were not negligent because helping a passenger board is routine.","Negligence requires a duty of care owed to the plaintiff, and Mrs. Palsgraf was not within the foreseeable zone of danger.","Proximate cause was broken by the intervening act of the passenger carrying fireworks.","Mrs. Palsgraf assumed the risk by standing on a busy railroad platform."],correct:1,explanation:"Cardozo grounded the holding in duty: negligence is relational, meaning a defendant owes a duty only to those foreseeably endangered by the negligent act. Mrs. Palsgraf was not within the foreseeable zone of danger."},{q:"Judge Andrews dissented. Which BEST represents Andrews's reasoning?",options:["Negligence toward anyone creates liability to the world at large, limited only by proximate cause analysis.","The railroad was strictly liable as a common carrier for any harm on its premises.","Mrs. Palsgraf was a foreseeable plaintiff because railroad platforms are crowded.","The guard's act was the but-for cause, and but-for causation establishes liability."],correct:0,explanation:"Andrews argued that when a negligent act occurs, the wrongdoer is responsible to anyone injured as a proximate result — not just those in the foreseeable zone of danger. He would use proximate cause rather than duty as the limiting principle."},{q:"Under Cardozo's framework, why is proximate cause analysis largely unnecessary in Palsgraf?",options:["Because the explosion was an unforeseeable superseding cause.","Because Cardozo resolved the case at the duty stage — without a duty owed to Mrs. Palsgraf, the proximate cause question never arises.","Because but-for causation was not established.","Because proximate cause is only relevant in strict liability cases."],correct:1,explanation:"Cardozo's approach resolves negligence claims at the threshold duty question. If no duty is owed to this plaintiff, the analysis ends — causation is irrelevant because there is no viable negligence claim to begin with."}],
-grimshaw:[{q:"In Grimshaw v. Ford Motor Co., a jury awarded punitive damages against Ford for injuries caused by a Pinto fuel tank that ruptured in a rear-end collision. Evidence showed Ford knew the tank design was dangerous but calculated that paying claims would be cheaper than redesigning the car. What standard for punitive damages did the court apply?",options:["Punitive damages require proof of intentional infliction of harm.","Punitive damages are available whenever a product causes serious injury.","Punitive damages are available when the defendant acted with conscious disregard for the safety of others.","Punitive damages require proof that the defendant acted with specific intent to injure the plaintiff."],correct:2,explanation:"The court held that punitive damages are appropriate when a defendant acts with conscious disregard for the safety of others — a standard between negligence and intentional harm. Ford's internal cost-benefit analysis demonstrated this conscious disregard. Option A sets the bar too high. Option C is too broad. Option D confuses specific intent with the civil punitive damages standard."},{q:"Ford's internal memo compared the cost of redesigning the Pinto's fuel tank ($11 per vehicle) against projected death and injury claims. A defendant argues this cost-benefit analysis is standard engineering practice. How would the Grimshaw court most likely respond?",options:["Cost-benefit analysis is always improper when human safety is involved.","Cost-benefit analysis is acceptable in engineering but cannot justify a known, life-threatening danger when the cost of prevention is minimal.","Cost-benefit analysis is legally privileged and cannot be introduced as evidence.","Cost-benefit analysis is relevant only to compensatory damages, not punitive damages."],correct:1,explanation:"The court did not hold that cost-benefit analysis is inherently wrong. The problem was that Ford's analysis revealed it knew the design was dangerous and consciously chose profit over safety when the fix was inexpensive. The analysis became evidence of conscious disregard."},{q:"Following Grimshaw, suppose a pharmaceutical company discovers its drug causes a rare but fatal side effect in 1 out of 500,000 users. The company adds a warning label but does not withdraw the drug. A patient dies. Are punitive damages likely available?",options:["Yes, because the company knew about the risk and continued selling.","Yes, because any death caused by a known risk justifies punitive damages.","No, because the company disclosed the risk and the drug's benefit to 499,999 users may outweigh the risk.","No, because pharmaceutical companies are immune from punitive damages."],correct:2,explanation:"Grimshaw's conscious disregard standard considers whether the defendant took reasonable steps to address a known risk. Here, the company disclosed the risk and the drug benefits hundreds of thousands. Unlike Ford, which concealed the danger, this company acted transparently."}],
-katko:[{q:"In Katko v. Briney, the defendant set a spring gun in an unoccupied farmhouse that seriously injured a trespasser. The court held the defendant liable. Which principle BEST explains the holding?",options:["Property owners may never use any force to protect unoccupied property.","The defendant was liable because the spring gun constituted a criminal booby trap.","Trespassers have the same legal protections as invited guests.","A property owner may not use deadly or serious force to protect property when human life is not in danger."],correct:3,explanation:"The court held that the value of human life, even a trespasser's, exceeds the value of property. Deadly force cannot be used to protect property alone — it is justified only when there is a threat to human life. Option A overstates the rule. Option C misstates premises liability. Option D focuses on criminal characterization rather than the tort principle."},{q:"After Katko, suppose Briney had been present when the trespasser entered and the trespasser approached aggressively in the dark. Would the analysis change?",options:["No — property owners can never use force against trespassers.","Yes — if Briney reasonably feared for his safety, self-defense would be analyzed under a different standard.","No — the trespasser's unlawful entry bars any self-defense claim.","Yes — the owner's presence automatically justifies any level of force under the castle doctrine."],correct:1,explanation:"Katko addressed force to protect unoccupied property. If Briney faced an aggressive intruder, the analysis shifts from defense of property to self-defense — a separate doctrine permitting reasonable force when facing a genuine threat. Option D overstates the castle doctrine, which still requires a reasonable perception of threat."}],
-rylands:[{q:"In Rylands v. Fletcher, the defendant built a reservoir. Water escaped through abandoned mine shafts and flooded the plaintiff's neighboring mine. The House of Lords held the defendant strictly liable. What justified strict liability rather than negligence?",options:["The defendant brought something onto his land for a non-natural use that was likely to cause mischief if it escaped.","The defendant personally supervised construction and should have discovered the shafts.","The defendant was vicariously liable for his contractors' negligence.","The defendant failed to obtain planning permission."],correct:0,explanation:"Justice Blackburn's rule, affirmed with Lord Cairns's 'non-natural use' qualification, imposed strict liability when a person brings something onto their land for a non-natural use that is likely to do mischief if it escapes. No fault was required."},{q:"Under Rylands, which scenario would MOST likely result in strict liability?",options:["A homeowner's garden pond overflows during a once-in-a-century rainstorm.","A farmer's cattle escape through a fence damaged by a fallen tree in a storm.","A chemical manufacturer stores 50,000 liters of industrial solvent and a tank ruptures, contaminating neighboring land.","A residential swimming pool leaks due to a manufacturing defect in the liner."],correct:2,explanation:"Industrial storage of large quantities of hazardous chemicals is a classic non-natural use. Option A involves a natural domestic use and act of God. Option C involves natural agricultural use. Option D is a products liability issue, not Rylands."}],
-frigaliment:[{q:"In Frigaliment v. B.N.S., a Swiss buyer contracted to purchase 'chicken' from a US seller. The buyer meant young broiling chickens; the seller shipped stewing chickens. The court ruled for the seller. What was the decisive factor?",options:["The seller acted in good faith by shipping what it believed 'chicken' meant.","The contract price was too low for broilers, making the contract void for mistake.","Trade usage conclusively established that 'chicken' meant only young broilers.","The buyer bore the burden of proving the narrower meaning of an ambiguous term and failed."],correct:3,explanation:"Judge Friendly held that when a contract term is ambiguous, the party claiming the narrower meaning bears the burden of proving that interpretation. Frigaliment could not prove it — trade usage was conflicting, no course of dealing existed, and the price was more consistent with stewing chicken."},{q:"The contract price was $0.33/lb. Young broilers cost ~$0.37; stewing chickens ~$0.30. How did Judge Friendly use this evidence?",options:["The price was one piece of evidence suggesting the parties contemplated the cheaper product, supporting the seller's broader interpretation.","The price conclusively proved stewing chicken was intended.","The price was irrelevant because interpretation depends solely on words used.","The price showed the contract was unconscionable."],correct:0,explanation:"Price was strong circumstantial evidence — but one factor among several, not conclusive. Judge Friendly considered price alongside contract language, trade usage, course of dealing, and USDA regulations. No single factor was conclusive."}],
-hadley:[{q:"In Hadley v. Baxendale, a mill's crankshaft broke. The owner hired a carrier to transport it for repair. The carrier delayed, and the mill lost profits. Under the Hadley rule, which BEST describes the limitation on contract damages?",options:["Damages are limited to the contract price paid for the carrier's services.","Damages include only losses reasonably foreseeable at the time of formation — either arising naturally from the breach or from special circumstances communicated before formation.","Damages are limited to direct costs and never include lost profits.","Damages are unlimited so long as actual losses are proven with certainty."],correct:1,explanation:"Baron Alderson established the two-limb rule: (1) general damages arising naturally from the breach are always recoverable; (2) consequential damages from special circumstances are recoverable only if communicated at formation. The carrier did not know the mill was shut down."},{q:"A bakery contracts with a refrigeration company to install a system by March 1. The bakery has a $50,000 catering event on March 5. The company is late and the bakery loses the contract. The bakery MOST likely recovers $50,000 if:",options:["The bakery proves the company was negligent.","The company learned about the event on March 3, two days before.","The company knew at formation that the bakery needed the system for a specific event worth $50,000.","The bakery had no other means of refrigeration."],correct:2,explanation:"Under Hadley, consequential damages require foreseeability at formation. If the company knew when it agreed to March 1 that a specific event depended on timely completion, the loss was foreseeable. Option B is wrong — post-formation knowledge doesn't expand liability. Option C introduces a tort standard. Option D addresses mitigation, not foreseeability."}],
-jacobyoungs:[{q:"In Jacob & Youngs v. Kent, a builder used Cohoes pipe instead of the specified Reading pipe. The pipes were functionally identical. Cardozo held for the builder. What was the basis?",options:["The builder was not in breach because the pipes were equivalent.","The homeowner waived the specification by failing to inspect during construction.","The builder substantially performed, and damages should be measured by difference in value rather than replacement cost, which would constitute economic waste.","The pipe specification was an unenforceable preference."],correct:2,explanation:"Cardozo held that when a contractor substantially performs with only a minor, unintentional deviation, damages are measured by the difference in value, not demolition and replacement cost. Tearing out the plumbing would destroy enormous value for zero benefit — economic waste."},{q:"Following Jacob & Youngs, which factor would MOST likely change the outcome to material breach?",options:["The builder deliberately substituted cheaper pipe to increase profits, knowing the contract specified Reading.","The homeowner told the builder he preferred Reading pipe for aesthetic reasons.","The Cohoes pipe was manufactured in a different state.","The builder completed the project two weeks late."],correct:0,explanation:"Substantial performance requires the deviation be unintentional. Cardozo emphasized the substitution was inadvertent. Deliberate substitution to cut costs would likely defeat the defense, even if the materials were functionally identical."}],
-lochner:[{q:"In Lochner v. New York, the Supreme Court struck down a law limiting bakers to 60 hours per week. What type of constitutional analysis did the Court apply?",options:["Procedural due process — the law was enacted without adequate procedures.","Commerce Clause preemption — state labor regulation was preempted by federal authority.","Equal protection — the law discriminated against bakers.","Substantive due process — the law infringed on a fundamental liberty (freedom of contract) that the government could not restrict without sufficient justification."],correct:3,explanation:"The majority applied substantive due process, holding that the Fourteenth Amendment's 'liberty' included freedom to contract for labor. The Court found the Bakeshop Act was not a legitimate health regulation but an unreasonable interference with this liberty."},{q:"Justice Holmes dissented in Lochner. Which BEST captures his central argument?",options:["The Bakeshop Act was valid because baking was demonstrably unhealthy.","The Constitution does not enact any particular economic theory, and the majority was improperly reading laissez-faire economics into the Due Process Clause.","The Fourteenth Amendment was intended only to protect formerly enslaved persons.","State labor laws are political questions beyond federal court jurisdiction."],correct:1,explanation:"Holmes argued the majority was importing its own economic philosophy into the Constitution. The Constitution permits a wide range of economic policies; courts should not substitute their preferences for the legislature's. Option A is closer to Justice Harlan's dissent."},{q:"After 1937, the Supreme Court abandoned the Lochner approach. Under current law, what standard applies to state economic regulation?",options:["Strict scrutiny — narrowly tailored to a compelling interest.","Intermediate scrutiny — substantially related to an important interest.","Rational basis review — rationally related to a legitimate government interest.","No judicial review — courts cannot review economic legislation after 1937."],correct:2,explanation:"Post-1937, economic regulations receive rational basis review — the most deferential standard. The government need only show the law is rationally related to any legitimate interest. Strict scrutiny applies to fundamental rights and suspect classifications, not economic regulation."}]
+// ── CASE CATEGORIES ────────────────────────────────────────────────────────
+const categories = {
+  contracts: [
+    { value: 'lucy',      label: 'Lucy v. Zehmer' },
+    { value: 'hawkins',   label: 'Hawkins v. McGee' },
+    { value: 'garratt',   label: 'Garratt v. Dailey' },
+    { value: 'palsgraf',  label: 'Palsgraf v. Long Island Railroad' },
+    { value: 'dudley',    label: 'R v. Dudley & Stephens' },
+    { value: 'cunningham',label: 'R v. Cunningham' },
+  ],
+  civil: [
+    { value: 'intlshoe',  label: 'International Shoe v. Washington' },
+    { value: 'wwvw',      label: 'World-Wide Volkswagen v. Woodson' },
+    { value: 'asahi',     label: 'Asahi Metal Industry v. Superior Court' },
+  ],
+  criminal: [
+    { value: 'goetz',     label: 'People v. Goetz (Self-Defense)' },
+    { value: 'mcnaghten', label: "M'Naghten's Case (Insanity Defense)" },
+    { value: 'miranda',   label: 'Miranda v. Arizona' },
+    { value: 'terry',     label: 'Terry v. Ohio' },
+  ],
+  constitutional: [
+    { value: 'marbury',   label: 'Marbury v. Madison' },
+    { value: 'brown',     label: 'Brown v. Board of Education' },
+    { value: 'loving',    label: 'Loving v. Virginia' },
+    { value: 'roe',       label: 'Roe v. Wade & Dobbs v. Jackson' },
+    { value: 'palmer',    label: 'Palmer v. Thompson' },
+  ],
 };
 
-// ─── MBE STATE ─────────────────────────────────────────────────────────────
+function populateCases() {
+  const cat = document.getElementById('category-select').value;
+  const caseSelect = document.getElementById('case-select');
+  caseSelect.innerHTML = '<option value="">— Choose a case —</option>';
+  if (!cat) { caseSelect.disabled = true; return; }
+  categories[cat].forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c.value; opt.textContent = c.label;
+    caseSelect.appendChild(opt);
+  });
+  caseSelect.disabled = false;
+  currentCase = '';
+  document.getElementById('mbe-content').innerHTML = `
+    <div class="empty-state"><div class="icon">⚖️</div><p>Now select a case to load questions.</p></div>`;
+}
+
+// ── QUESTION BANK ──────────────────────────────────────────────────────────
+// Correct answers deliberately spread across A(0), B(1), C(2), D(3)
+const questionBank = {
+
+  lucy: [
+    {
+      q: "W.O. Lucy sued A.H. Zehmer for specific performance of a contract to sell a farm. Zehmer claimed he was drunk and joking when he wrote the agreement on a restaurant receipt. The court found Zehmer had appeared sober and negotiated seriously. Under the objective theory of contract formation, which of the following BEST states the governing legal standard?",
+      options: [
+        "A contract is formed when a party subjectively intends to be bound.",
+        "A written agreement on informal paper cannot constitute a valid contract.",
+        "A contract is voidable if either party was intoxicated at the time of signing.",
+        "A contract is formed based on the outward expression of the parties as a reasonable person would interpret it."
+      ],
+      correct: 3,
+      explanation: "The objective theory of contracts — applied in Lucy v. Zehmer — holds that intent is judged by outward expression, not secret subjective intent. Because Zehmer appeared sober and negotiated terms seriously, a valid contract was found. Option A describes the subjective theory, which courts reject. Option B is incorrect; courts regularly enforce agreements on informal writings. Option C misstates the law — intoxication is a defense only when so severe as to prevent understanding."
+    },
+    {
+      q: "Suppose Lucy had never tendered the $50,000 at the time he sought specific performance. Which of the following is MOST accurate?",
+      options: [
+        "Lucy may seek specific performance because payment and conveyance were concurrent conditions.",
+        "Lucy cannot seek specific performance because he never performed his own obligation.",
+        "Lucy may seek specific performance only if he can show unjust enrichment.",
+        "Lucy cannot seek specific performance because the contract lacked a closing date."
+      ],
+      correct: 0,
+      explanation: "In bilateral contracts involving simultaneous exchange, neither party's performance is a condition precedent to the other's — they are concurrent conditions. Lucy's tender of payment and Zehmer's conveyance of title were to occur simultaneously, so Lucy's failure to pre-pay did not bar his claim. Option B incorrectly treats payment as a condition precedent. Option C introduces unjust enrichment, which is irrelevant here. Option D is incorrect; absence of a closing date affects interpretation, not enforceability."
+    }
+  ],
+
+  hawkins: [
+    {
+      q: "Dr. McGee promised George Hawkins a 'one hundred percent perfect hand.' The operation failed, leaving the hand worse. The court awarded expectation damages. Which measure BEST describes expectation damages here?",
+      options: [
+        "All medical expenses incurred as a result of the failed surgery.",
+        "Compensation for pain and suffering caused by the operation.",
+        "The difference between the value of the promised perfect hand and the value of the hand as delivered.",
+        "Nominal damages only, because the promise was made by a physician."
+      ],
+      correct: 2,
+      explanation: "Expectation damages place the non-breaching party in the position they would have been in had the contract been performed. The proper measure is the difference in value between what was promised (a perfect hand) and what was delivered (a scarred, hairy hand). Option A describes reliance damages. Option B — pain and suffering from the operation itself — was excluded by the court because it arose from the consensual procedure. Option D is incorrect; physicians' warranties are enforceable when clearly made."
+    }
+  ],
+
+  garratt: [
+    {
+      q: "In Garratt v. Dailey, a five-year-old pulled a chair from under an adult about to sit, causing injury. The court analyzed battery. What element was central?",
+      options: [
+        "Whether the child acted maliciously toward the plaintiff.",
+        "Whether the child's parents were negligent in supervising him.",
+        "Whether the child had the legal capacity to form intent at his age.",
+        "Whether the child knew with substantial certainty that the plaintiff would attempt to sit where the chair had been."
+      ],
+      correct: 3,
+      explanation: "Battery requires that the defendant either desired the harmful contact or knew with substantial certainty it would result. The court remanded to determine whether Brian Dailey knew with substantial certainty that Ruth Garratt would attempt to sit in the moved chair's former location. Option A is wrong — malice is not required for battery. Option B addresses negligence, not intentional tort. Option C is irrelevant; young children can commit battery."
+    },
+    {
+      q: "How does the Garratt 'substantial certainty' standard for battery intent differ from a negligence standard?",
+      options: [
+        "There is no meaningful difference; both focus on what a reasonable person would have known.",
+        "Substantial certainty requires the defendant to have actually foreseen contact as practically inevitable; negligence requires only that a reasonable person would have foreseen some risk.",
+        "Negligence is stricter because it imposes liability without fault.",
+        "Substantial certainty requires proof of harmful motive; negligence does not."
+      ],
+      correct: 1,
+      explanation: "The substantial certainty test focuses on the defendant's subjective state of mind — did they know contact was essentially inevitable? Negligence is objective — would a reasonable person have foreseen an unreasonable risk? A defendant can be negligent without knowing contact would result. Options A, C, and D each misstate one or both standards."
+    }
+  ],
+
+  palsgraf: [
+    {
+      q: "In Palsgraf, a guard helped a passenger board a moving train, dislodging fireworks that exploded and injured Mrs. Palsgraf at the other end of the platform. Judge Cardozo held for the railroad. On what basis?",
+      options: [
+        "Mrs. Palsgraf assumed the risk by standing on a busy railroad platform.",
+        "Proximate cause was broken by the passenger's intervening act of carrying fireworks.",
+        "Mrs. Palsgraf was not within the foreseeable zone of danger from the guard's act, so no duty was owed to her.",
+        "Railroad employees are not negligent when assisting passengers to board."
+      ],
+      correct: 2,
+      explanation: "Cardozo's majority opinion grounded the holding in duty: negligence is relational, and a defendant owes a duty only to those foreseeably endangered by the negligent act. Because Mrs. Palsgraf — standing far away with no visible connection to the package — was outside the foreseeable zone of danger, the railroad owed her no duty, and without duty there is no negligence. Option A was not the basis of Cardozo's holding. Option B describes Andrews's dissenting approach. Option D is incorrect — the guard's act may have been negligent as to the passenger."
+    },
+    {
+      q: "Judge Andrews dissented in Palsgraf. Which statement BEST represents his reasoning?",
+      options: [
+        "Negligence toward anyone creates liability to the world, limited only by proximate cause analysis.",
+        "The railroad was strictly liable as a common carrier for all platform injuries.",
+        "Mrs. Palsgraf was a foreseeable plaintiff because railroad platforms are crowded.",
+        "But-for causation alone establishes liability regardless of foreseeability."
+      ],
+      correct: 0,
+      explanation: "Andrews argued that when a negligent act occurs, the wrongdoer is responsible to anyone injured as a proximate result — not just those in the foreseeable zone. Rather than limiting liability through duty, Andrews would use proximate cause as the limiting principle. Options B, C, and D mischaracterize his actual reasoning."
+    }
+  ],
+
+  dudley: [
+    {
+      q: "In R v. Dudley & Stephens, three shipwreck survivors killed the cabin boy to survive. The court rejected the necessity defense. Which principle BEST explains the rejection?",
+      options: [
+        "The necessity defense is unavailable in English law under any circumstances.",
+        "The defendants had alternative means of survival they failed to pursue.",
+        "Necessity cannot justify the deliberate killing of an innocent, non-threatening person to preserve others' lives.",
+        "Necessity is only available when the victim consents to the sacrifice."
+      ],
+      correct: 2,
+      explanation: "The court held that no necessity, however extreme, can justify deliberately killing an innocent and non-threatening person to save others. The decision reflects a categorical rule: innocent life may not be instrumentalized. Option A overstates the law — necessity can apply in other contexts. Option B was not the basis of the holding; the court assumed no alternatives existed. Option D is incorrect; consent is not a recognized element of necessity."
+    }
+  ],
+
+  cunningham: [
+    {
+      q: "In R v. Cunningham, the defendant ripped a gas meter from a wall to steal coins, allowing gas to seep into a neighboring house. The court quashed his conviction. What was the central holding on mens rea?",
+      options: [
+        "'Maliciously' requires either intent to cause the harm or subjective recklessness as to that harm.",
+        "The defendant lacked mens rea because he did not intend any harm to the neighbor.",
+        "'Maliciously' is satisfied by proof of general wickedness or immoral motive.",
+        "The defendant could not be convicted because the harm was caused indirectly."
+      ],
+      correct: 0,
+      explanation: "The Court of Criminal Appeal held that 'maliciously' in the 1861 Act required the defendant to have either intended the harm or to have been subjectively reckless — meaning he actually foresaw the risk and nonetheless took it. Cunningham did not foresee the gas endangering his neighbor. Option B is partially correct in outcome but incomplete in legal formulation. Option C describes the older incorrect interpretation the court rejected. Option D misstates the holding."
+    }
+  ],
+
+  // ── CIVIL PROCEDURE ────────────────────────────────────────────────────
+
+  intlshoe: [
+    {
+      q: "In International Shoe Co. v. Washington, the Supreme Court established the modern test for personal jurisdiction. The company argued it had no physical presence in Washington. The Court held Washington could assert jurisdiction. What standard did the Court articulate?",
+      options: [
+        "Jurisdiction requires the defendant's physical presence or domicile in the forum state.",
+        "Jurisdiction is proper whenever a defendant causes harm in the forum state.",
+        "A defendant must have minimum contacts with the forum state such that maintaining suit does not offend traditional notions of fair play and substantial justice.",
+        "Jurisdiction is proper if the defendant has conducted any business transaction in the forum state."
+      ],
+      correct: 2,
+      explanation: "International Shoe replaced the rigid Pennoyer presence-based rule with a flexible minimum contacts test. The Court held that due process requires only that the defendant have certain minimum contacts with the forum such that the exercise of jurisdiction comports with traditional notions of fair play and substantial justice. Option A describes the older Pennoyer rule. Option B is overbroad and not the test the Court adopted. Option D is too absolute — a single transaction may or may not suffice depending on its nature and relationship to the claim."
+    },
+    {
+      q: "Following International Shoe, a court distinguishes between 'general' and 'specific' personal jurisdiction. Which of the following BEST describes general jurisdiction?",
+      options: [
+        "Jurisdiction over any claim against a defendant whose contacts with the forum are so continuous and systematic as to render the defendant essentially at home there.",
+        "Jurisdiction over claims arising directly out of the defendant's contacts with the forum state.",
+        "Jurisdiction based on the plaintiff's domicile in the forum state.",
+        "Jurisdiction whenever a defendant's product enters the forum state through the stream of commerce."
+      ],
+      correct: 0,
+      explanation: "General jurisdiction (also called all-purpose jurisdiction) allows a court to hear any claim against the defendant, regardless of where the claim arose, when the defendant's contacts are so continuous and systematic that the defendant is essentially 'at home' in the forum — typically its state of incorporation or principal place of business for corporations. Option B describes specific jurisdiction. Option C is incorrect — the plaintiff's domicile does not by itself confer personal jurisdiction over the defendant. Option D describes a stream-of-commerce theory relevant to specific jurisdiction, not general."
+    },
+    {
+      q: "A Japanese manufacturer sells components to a California distributor who incorporates them into finished goods sold nationwide. A consumer in Texas is injured. The manufacturer has never advertised in Texas or specifically targeted it. Under International Shoe and its progeny, Texas most likely:",
+      options: [
+        "Has general jurisdiction because the manufacturer's products reached Texas through normal commerce.",
+        "Has specific jurisdiction because the manufacturer purposefully availed itself of the Texas market.",
+        "Lacks personal jurisdiction because the manufacturer did not purposefully direct activities at Texas.",
+        "Has jurisdiction under the effects test because harm was felt in Texas."
+      ],
+      correct: 2,
+      explanation: "The purposeful availment requirement — refined in World-Wide Volkswagen and Asahi — requires that the defendant purposefully direct activities at the forum state, not merely place goods in the stream of commerce that happen to end up there. A manufacturer who sells to a California distributor without specifically targeting Texas has not purposefully availed itself of Texas. Option A misstates general jurisdiction doctrine. Option B is incorrect because mere foreseeability that products might reach Texas is insufficient without purposeful direction. Option D misstates the effects test, which applies primarily to intentional torts."
+    }
+  ],
+
+  wwvw: [
+    {
+      q: "In World-Wide Volkswagen Corp. v. Woodson, a car purchased in New York was involved in an accident in Oklahoma. The plaintiffs sued the New York dealer and regional distributor in Oklahoma. The Supreme Court held Oklahoma lacked personal jurisdiction. Why?",
+      options: [
+        "The defendants had not purposefully availed themselves of the privilege of conducting activities in Oklahoma.",
+        "Product liability suits must be brought in the state where the product was manufactured.",
+        "The defendants lacked sufficient financial contacts with Oklahoma to satisfy due process.",
+        "The Oklahoma court lacked subject matter jurisdiction over the dispute."
+      ],
+      correct: 0,
+      explanation: "The Court applied the purposeful availment test from International Shoe and held that the New York dealer and regional distributor had not purposefully availed themselves of Oklahoma. The mere foreseeability that a customer might drive the car to Oklahoma was insufficient. It is the defendant's own purposeful conduct directed at the forum — not the plaintiff's unilateral activity — that establishes the relevant contacts. Options B, C, and D misstate the doctrine or the Court's reasoning."
+    },
+    {
+      q: "World-Wide Volkswagen identified two key purposes served by the minimum contacts requirement. Which answer BEST captures both?",
+      options: [
+        "To protect plaintiffs from having to litigate in inconvenient forums, and to ensure defendants can predict where they may be sued.",
+        "To protect defendants from being haled into court in jurisdictions where they have not purposefully availed themselves, and to ensure that states do not overreach their legitimate regulatory interests.",
+        "To limit federal court jurisdiction and to prevent forum shopping by plaintiffs.",
+        "To protect defendants from double jeopardy and to ensure uniform application of state law."
+      ],
+      correct: 1,
+      explanation: "The Court in World-Wide Volkswagen articulated two core purposes: (1) protecting defendants from the burden of litigating in a distant or inconvenient forum — a due process protection rooted in liberty — and (2) ensuring that states do not exceed their legitimate authority by asserting jurisdiction over defendants with no meaningful connection to the forum. Option A incorrectly focuses on plaintiffs. Options C and D introduce irrelevant doctrines."
+    }
+  ],
+
+  asahi: [
+    {
+      q: "In Asahi Metal Industry Co. v. Superior Court, a plurality of the Court addressed whether California had jurisdiction over a Japanese manufacturer whose valve components reached California through a Taiwanese intermediary. Justice O'Connor's plurality held:",
+      options: [
+        "Placing a product in the stream of commerce, with awareness it may reach the forum, satisfies purposeful availment.",
+        "Placing a product in the stream of commerce alone is insufficient; additional conduct purposefully directed at the forum is required.",
+        "Foreign manufacturers are immune from personal jurisdiction in U.S. state courts.",
+        "The stream of commerce theory satisfies minimum contacts whenever the product causes harm in the forum."
+      ],
+      correct: 1,
+      explanation: "Justice O'Connor's plurality in Asahi (the 'stream of commerce plus' approach) held that merely placing a product in the stream of commerce — even with awareness that it might reach the forum — is insufficient to establish purposeful availment. Additional conduct specifically directed at the forum state is required, such as designing the product for the market, advertising there, or establishing distribution channels. Option A describes Justice Brennan's broader stream of commerce approach, which did not command a majority. Options C and D are incorrect statements of law."
+    },
+    {
+      q: "Even if minimum contacts existed in Asahi, the Supreme Court unanimously agreed California jurisdiction was unreasonable. Which factor was MOST significant?",
+      options: [
+        "The plaintiff had already settled, leaving only an indemnification dispute between two foreign corporations.",
+        "California lacked a compelling interest in adjudicating a dispute between foreign companies.",
+        "The burden on Asahi of litigating in California was slight given modern transportation.",
+        "Both A and B, taken together, made jurisdiction unreasonable under the fair play and substantial justice analysis."
+      ],
+      correct: 3,
+      explanation: "The Court's unanimous holding on reasonableness rested on the combination of factors: the plaintiff had already settled (so California's interest in protecting its residents was substantially diminished) and the remaining dispute was between a Japanese and a Taiwanese corporation, both foreign parties. The burden on Asahi of litigating in California — accounting for the international context — was also severe. Together these factors made jurisdiction unreasonable. Option A alone and Option B alone each capture only part of the analysis."
+    }
+  ],
+
+  // ── CRIMINAL LAW & PROCEDURE ────────────────────────────────────────────
+
+  goetz: [
+    {
+      q: "In People v. Goetz, Bernhard Goetz shot four young men on a New York subway after one asked him for five dollars. Goetz claimed self-defense. The New York Court of Appeals rejected a purely subjective self-defense standard. Which standard did the court apply?",
+      options: [
+        "A purely subjective standard: whether the defendant personally believed deadly force was necessary.",
+        "A purely objective standard: whether a reasonable person would have used deadly force in that situation.",
+        "A hybrid standard: whether a reasonable person in the defendant's situation — including his prior victimization — would have believed deadly force was necessary.",
+        "Strict liability: self-defense is unavailable when the defendant initiates contact."
+      ],
+      correct: 2,
+      explanation: "The court rejected both extremes. A purely subjective standard would excuse any defendant who genuinely (even unreasonably) feared for his life. A purely objective 'reasonable man' standard ignores relevant circumstances. The court adopted a hybrid: whether a reasonable person in the defendant's situation — with his relevant prior experiences and the circumstances as he perceived them — would have believed deadly force was necessary. Options A and B each describe rejected standards. Option D mischaracterizes the law of self-defense."
+    },
+    {
+      q: "Goetz shot a fifth shot at a victim who was already fleeing and wounded. Under New York's self-defense statute, this shot is MOST likely:",
+      options: [
+        "Justified because Goetz reasonably believed the threat was ongoing.",
+        "Unjustified because the threat had ended — a fleeing, wounded person no longer poses an imminent danger.",
+        "Justified under the castle doctrine because the subway was a public place.",
+        "A matter for the jury to decide without any legal limitation."
+      ],
+      correct: 1,
+      explanation: "Self-defense requires an imminent threat. Once a potential attacker is fleeing and wounded, the imminent threat has ended, and continued use of deadly force is no longer justified. The fifth shot — fired at a person already down and fleeing — falls outside the boundaries of lawful self-defense. Option A is incorrect because imminence is an objective component. Option C misapplies the castle doctrine, which concerns the duty to retreat, not pursuit. Option D is incorrect; the court may instruct the jury that the fifth shot cannot be justified as self-defense."
+    }
+  ],
+
+  mcnaghten: [
+    {
+      q: "M'Naghten's Case established the classic common law insanity defense. Under the M'Naghten test, a defendant is not criminally responsible if, at the time of the act:",
+      options: [
+        "The defendant was unable to control his conduct due to a mental disease or defect.",
+        "The defendant was suffering from any recognized mental illness diagnosed by a physician.",
+        "The defendant did not know the nature and quality of the act, or did not know that what he was doing was wrong.",
+        "The defendant's mental disease made unlawful conduct substantially more likely."
+      ],
+      correct: 2,
+      explanation: "The M'Naghten test is a cognitive test focused on knowledge: the defendant is not responsible if, due to a disease of the mind, he either (1) did not know the nature and quality of the act he was doing, or (2) if he did know it, he did not know that what he was doing was wrong. Option A describes the irresistible impulse test, a separate and distinct standard. Option B is far too broad. Option D describes elements of the Model Penal Code's substantial capacity test."
+    },
+    {
+      q: "A defendant who hears voices commanding him to kill believes he is acting on God's instructions and that his act is morally justified. He knows he is stabbing a person. Under the M'Naghten test, which analysis is MOST accurate?",
+      options: [
+        "He is not responsible because he could not control his conduct due to the voices.",
+        "He may not be responsible if the delusion prevented him from knowing his act was legally wrong.",
+        "He is fully responsible because he knew the nature and quality of his act.",
+        "He is not responsible because a mental disease rendered him unable to appreciate the criminality of his conduct."
+      ],
+      correct: 1,
+      explanation: "Under M'Naghten, 'not knowing the act was wrong' can mean not knowing it was legally wrong or not knowing it was morally wrong — jurisdictions differ. A defendant who believes God commanded the killing may, under some formulations, lack knowledge that the act was wrong even while knowing its physical nature. Option A describes the irresistible impulse test. Option C is too quick — knowledge of physical nature alone does not settle the 'wrong' prong. Option D describes the MPC substantial capacity test."
+    }
+  ],
+
+  miranda: [
+    {
+      q: "Miranda v. Arizona held that certain warnings must be given before custodial interrogation. Which of the following BEST describes what 'custody' requires for Miranda to apply?",
+      options: [
+        "Custody requires formal arrest only; investigatory stops do not trigger Miranda.",
+        "Custody exists whenever police question a suspect, regardless of location or restraint.",
+        "Custody exists when a reasonable person in the suspect's position would not feel free to terminate the encounter and leave.",
+        "Custody requires physical restraint such as handcuffing or placement in a police vehicle."
+      ],
+      correct: 2,
+      explanation: "The Supreme Court has clarified that 'custody' for Miranda purposes is determined by an objective test: whether a reasonable person in the suspect's circumstances would feel free to terminate the interrogation and leave. Formal arrest is sufficient but not necessary. Option A is too narrow — custody can exist without formal arrest. Option B is too broad — general on-the-scene questioning does not trigger Miranda. Option D is incorrect; custody does not require physical restraint."
+    },
+    {
+      q: "A suspect in custody is given Miranda warnings and says, 'I think I should talk to a lawyer, but maybe I can answer a few questions first.' Police continue questioning and obtain a confession. Under Miranda and its progeny, this confession is MOST likely:",
+      options: [
+        "Admissible because the suspect did not unambiguously invoke the right to counsel.",
+        "Inadmissible because any mention of an attorney requires all questioning to cease.",
+        "Admissible because the suspect subsequently waived his rights by answering questions.",
+        "Inadmissible because Miranda warnings had already been given, making the statement presumptively coerced."
+      ],
+      correct: 0,
+      explanation: "Under Davis v. United States (1994), a suspect must unambiguously invoke the right to counsel. An ambiguous or equivocal statement about wanting a lawyer does not require police to cease questioning. 'I think I should talk to a lawyer, but maybe I can answer a few questions' is equivocal. Police may — but are not required to — ask clarifying questions. The confession obtained is most likely admissible. Option B incorrectly requires cessation on any mention of an attorney. Options C and D state incorrect rules."
+    },
+    {
+      q: "A suspect is given Miranda warnings, waives his rights, and confesses. He later argues his waiver was invalid because he has a low IQ and did not fully understand his rights. Under Colorado v. Spring and related cases, the waiver is MOST likely:",
+      options: [
+        "Invalid because a valid waiver requires full comprehension of all possible consequences.",
+        "Valid if it was made voluntarily, knowingly, and intelligently under the totality of the circumstances.",
+        "Invalid because police have an affirmative duty to ensure the suspect fully comprehends the warnings.",
+        "Valid only if the suspect signed a written waiver form."
+      ],
+      correct: 1,
+      explanation: "A Miranda waiver is valid if it is (1) voluntary — not the product of coercion; (2) knowing — made with awareness of the right being waived; and (3) intelligent — made with understanding of the consequences, assessed under the totality of circumstances. Low IQ alone does not invalidate a waiver if the suspect was informed of rights and chose to speak. Option A sets an impossibly high standard the Court has rejected. Option C misstates police obligations. Option D is incorrect; no written waiver is required."
+    }
+  ],
+
+  terry: [
+    {
+      q: "In Terry v. Ohio, Officer McFadden observed Terry and others repeatedly walking past a store in a manner he believed indicated preparations for a robbery. He stopped and frisked Terry, finding a concealed weapon. The Supreme Court upheld the stop and frisk. What standard did the Court apply?",
+      options: [
+        "Probable cause that the suspect had committed or was committing a crime.",
+        "Reasonable articulable suspicion that criminal activity was afoot and that the suspect was armed and dangerous.",
+        "A good faith belief by the officer that a crime had been committed.",
+        "Any articulable reason for the officer's suspicion, however slight."
+      ],
+      correct: 1,
+      explanation: "Terry established that a brief investigatory stop and limited pat-down for weapons does not require probable cause. The Court held that an officer needs specific, articulable facts that, combined with rational inferences, reasonably warrant the belief that criminal activity is afoot and that the person may be armed and dangerous. This is a lower standard than probable cause. Options A, C, and D each mistate the Terry standard."
+    },
+    {
+      q: "After Terry, the 'stop and frisk' doctrine has been applied and limited by subsequent cases. Which of the following is MOST consistent with Terry's framework?",
+      options: [
+        "An officer may conduct a full search of a suspect's bags based on reasonable suspicion alone.",
+        "An officer who lawfully stops a suspect for a traffic violation may always frisk the occupants.",
+        "An officer may pat down the outer clothing of a lawfully stopped suspect if there is articulable reason to believe the suspect is armed and dangerous.",
+        "Reasonable suspicion sufficient for a stop automatically justifies a frisk."
+      ],
+      correct: 2,
+      explanation: "Terry permits a pat-down of outer clothing — not a full search — and only when the officer has specific articulable reasons to believe the person is armed and dangerous. The stop and frisk are two separate inquiries: reasonable suspicion justifies the stop; a separate reasonable belief that the person is armed and dangerous justifies the limited frisk. Option A overstates the scope of a Terry frisk. Option B is incorrect — a traffic stop does not automatically justify frisking all occupants. Option D conflates the two independent standards."
+    }
+  ],
+
+  // ── CONSTITUTIONAL LAW ──────────────────────────────────────────────────
+
+  marbury: [
+    {
+      q: "In Marbury v. Madison, Chief Justice Marshall held Section 13 of the Judiciary Act of 1789 unconstitutional. On what ground?",
+      options: [
+        "Section 13 purported to expand the Supreme Court's original jurisdiction beyond what Article III permits.",
+        "Congress exceeded its Article I powers by expanding the Senate's advice-and-consent role.",
+        "The President has absolute discretion in commissioning federal officers.",
+        "The Supreme Court lacked authority to review acts of the executive branch."
+      ],
+      correct: 0,
+      explanation: "Marshall held that Article III sets the outer boundaries of the Supreme Court's original jurisdiction and Congress cannot expand it by statute. Section 13 purported to authorize the Court to issue writs of mandamus in original proceedings — a power not in Article III. Because a statute conflicting with the Constitution must yield, Section 13 was void. Options B, C, and D misstate Marshall's reasoning."
+    }
+  ],
+
+  brown: [
+    {
+      q: "Brown v. Board of Education overruled Plessy v. Ferguson. The Court's central holding concerned which constitutional provision?",
+      options: [
+        "The Due Process Clause of the Fifth Amendment.",
+        "The Commerce Clause of Article I.",
+        "The Equal Protection Clause of the Fourteenth Amendment.",
+        "The Privileges or Immunities Clause of the Fourteenth Amendment."
+      ],
+      correct: 2,
+      explanation: "The Court held that racially segregated public schools violated the Equal Protection Clause of the Fourteenth Amendment. Chief Justice Warren wrote that 'separate but equal' had no place in public education because segregation inherently generated a sense of inferiority that impaired educational opportunity. Option A is incorrect — the Fifth Amendment Due Process claim was addressed in the companion case Bolling v. Sharpe. Options B and D are not the basis of the holding."
+    }
+  ],
+
+  loving: [
+    {
+      q: "In Loving v. Virginia, the Supreme Court struck down Virginia's anti-miscegenation statute that banned interracial marriage. The Court held the statute violated which constitutional provisions?",
+      options: [
+        "The First Amendment right of expressive association and the Fourteenth Amendment.",
+        "Both the Equal Protection Clause and the Due Process Clause of the Fourteenth Amendment.",
+        "The Equal Protection Clause alone — the Court expressly declined to reach due process.",
+        "The Thirteenth Amendment prohibition on involuntary servitude."
+      ],
+      correct: 1,
+      explanation: "Chief Justice Warren's opinion held that Virginia's law violated both the Equal Protection Clause (because it classified on the basis of race with no legitimate purpose) and the Due Process Clause (because the freedom to marry is a fundamental liberty that cannot be restricted on racial grounds). Option A is incorrect — the First Amendment was not at issue. Option C is wrong; the Court explicitly reached both clauses. Option D is incorrect; the Thirteenth Amendment was not the basis of the holding."
+    },
+    {
+      q: "Virginia defended its anti-miscegenation law by arguing that both races were punished equally — both a white person and a Black person who married across racial lines faced the same criminal penalty. How did the Court respond to this 'equal application' argument?",
+      options: [
+        "The Court accepted the argument as relevant but found Virginia's interest insufficient under rational basis review.",
+        "The Court held that equal application of a racially discriminatory law does not eliminate the racial classification, which must survive strict scrutiny.",
+        "The Court declined to apply strict scrutiny because marriage is not a fundamental right.",
+        "The Court held that equal application satisfies the Equal Protection Clause whenever both races face identical penalties."
+      ],
+      correct: 1,
+      explanation: "The Court flatly rejected the equal application argument. A law that classifies on the basis of race is subject to strict scrutiny regardless of whether the burden falls 'equally' on both races. Virginia's statute used race as the basis for criminal liability and served no legitimate governmental purpose independent of racial discrimination. Options A, C, and D each misstate either the standard of review or the holding."
+    }
+  ],
+
+  roe: [
+    {
+      q: "In Roe v. Wade (1973), the Supreme Court held that the Constitution protects a woman's right to obtain an abortion. The constitutional basis was:",
+      options: [
+        "The Equal Protection Clause of the Fourteenth Amendment, because abortion restrictions discriminate on the basis of sex.",
+        "The right to privacy implicit in the Due Process Clause of the Fourteenth Amendment and related penumbral rights.",
+        "The Ninth Amendment's express recognition of the right to bodily autonomy.",
+        "The Thirteenth Amendment prohibition on involuntary servitude."
+      ],
+      correct: 1,
+      explanation: "Roe located the right to abortion in the constitutional right to privacy — recognized in Griswold v. Connecticut and grounded in the liberty interest protected by the Due Process Clause of the Fourteenth Amendment. The Court used a trimester framework to balance this right against state interests. Option A describes a theory some scholars advanced but the Court did not adopt in Roe. Options C and D were not the basis of the holding."
+    },
+    {
+      q: "In Dobbs v. Jackson Women's Health Organization (2022), the Supreme Court overruled Roe v. Wade. The Court's central holding was:",
+      options: [
+        "Abortion rights are protected by the Equal Protection Clause and states may not ban abortion prior to viability.",
+        "The Constitution confers no right to abortion; the authority to regulate abortion is returned to the states.",
+        "States may regulate but not ban abortion, consistent with the undue burden standard from Planned Parenthood v. Casey.",
+        "The right to abortion is implicit in the Ninth Amendment and cannot be abrogated by state law."
+      ],
+      correct: 1,
+      explanation: "Dobbs held that the Constitution does not confer a right to abortion. Justice Alito's majority opinion held that Roe and Casey were wrongly decided — abortion is not deeply rooted in the Nation's history and tradition and not implicit in the concept of ordered liberty. The decision returns authority to regulate abortion to elected representatives at the state level. Options A, C, and D describe positions the Dobbs majority explicitly rejected."
+    }
+  ],
+
+  palmer: [
+    {
+      q: "In Palmer v. Thompson (1971), the City of Jackson, Mississippi closed its public swimming pools rather than desegregate them. The Supreme Court upheld the closures. The Court's primary basis was:",
+      options: [
+        "The city's racially discriminatory motive in closing the pools automatically violated the Equal Protection Clause.",
+        "The Equal Protection Clause is not violated when a government closes a facility to all citizens equally, regardless of motive.",
+        "The closures violated the Thirteenth Amendment because they perpetuated the badges of slavery.",
+        "States may always close public facilities so long as they provide private alternatives."
+      ],
+      correct: 1,
+      explanation: "The majority in Palmer held that closing the pools to everyone did not violate the Equal Protection Clause because Blacks and whites were treated equally — neither group had access to the pools. The Court declined to strike down a law based solely on the legislature's alleged discriminatory motive, focusing instead on discriminatory effect or unequal treatment. Note: Palmer has been criticized and its motive analysis superseded in part by Washington v. Davis and Arlington Heights. Options A, C, and D do not reflect the majority's holding."
+    },
+    {
+      q: "Palmer v. Thompson is often compared to a hypothetical 'burning down the schoolhouse' scenario — i.e., could a state avoid integration by simply eliminating the integrated service? Which argument MOST effectively challenges the Palmer majority's reasoning?",
+      options: [
+        "The Equal Protection Clause requires states to provide public swimming pools.",
+        "Equal treatment in the denial of a benefit can still constitute a constitutional violation when the denial is motivated by a purpose to avoid integration.",
+        "The Fourteenth Amendment prohibits states from closing any facility that was previously integrated.",
+        "Palmer was correctly decided because the Constitution does not mandate that governments provide recreational services."
+      ],
+      correct: 1,
+      explanation: "The strongest critique of Palmer — adopted in the dissent and in subsequent equal protection jurisprudence — is that 'equal denial' of a benefit can constitute a constitutional violation when the denial is itself a product of invidious racial purpose. The later development of discriminatory purpose doctrine in Washington v. Davis and Village of Arlington Heights reflects this concern. Option A is incorrect — the Constitution does not require states to operate pools. Option C overstates the law. Option D accepts Palmer's outcome without engaging the critique."
+    }
+  ]
+
+}; // end questionBank
+
+// ── MBE STATE ──────────────────────────────────────────────────────────────
 let currentCase = '';
 let currentQIndex = 0;
 let questionOrder = [];
@@ -217,12 +1078,27 @@ let answered = false;
 
 function loadQuestion() {
   const sel = document.getElementById('case-select').value;
-  if (!sel) { document.getElementById('mbe-content').innerHTML = '<div class="empty-state"><div class="icon">⚖️</div><p>Select a case above to begin practice.</p></div>'; return; }
-  if (sel !== currentCase) { currentCase = sel; questionOrder = shuffleArray([...Array(questionBank[sel].length).keys()]); currentQIndex = 0; }
+  if (!sel) return;
+  if (sel !== currentCase) {
+    currentCase = sel;
+    const bank = questionBank[sel];
+    if (!bank) {
+      document.getElementById('mbe-content').innerHTML = `<div class="empty-state"><div class="icon">🔧</div><p>Questions for this case are coming soon.</p></div>`;
+      return;
+    }
+    questionOrder = shuffleArray([...Array(bank.length).keys()]);
+    currentQIndex = 0;
+  }
   renderQuestion();
 }
 
-function shuffleArray(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
 
 function renderQuestion() {
   answered = false;
@@ -230,13 +1106,31 @@ function renderQuestion() {
   if (!bank || bank.length === 0) return;
   const qi = questionOrder[currentQIndex % questionOrder.length];
   const q = bank[qi];
-  const optionsHTML = q.options.map((opt, i) => `<button class="option-btn" onclick="selectAnswer(${i}, ${q.correct})" id="opt-${i}"><span class="option-label">${String.fromCharCode(65+i)}.</span><span>${opt}</span></button>`).join('');
-  document.getElementById('mbe-content').innerHTML = `<div class="question-card" id="question-card"><div class="q-number">Question ${(currentQIndex % bank.length) + 1} of ${bank.length} · ${getCaseName(currentCase)}</div><div class="q-text">${q.q}</div><div class="options">${optionsHTML}</div><div id="explanation-area"></div></div><div class="btn-row"><button class="btn-primary" id="next-btn" onclick="nextQuestion()" style="display:none;">Next Question →</button></div>`;
+
+  const optionsHTML = q.options.map((opt, i) => `
+    <button class="option-btn" onclick="selectAnswer(${i}, ${q.correct})" id="opt-${i}">
+      <span class="option-label">${String.fromCharCode(65+i)}.</span>
+      <span>${opt}</span>
+    </button>`).join('');
+
+  document.getElementById('mbe-content').innerHTML = `
+    <div class="question-card" id="question-card">
+      <div class="q-number">Question ${(currentQIndex % bank.length) + 1} of ${bank.length} · ${getCaseName(currentCase)}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="options">${optionsHTML}</div>
+      <div id="explanation-area"></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" id="next-btn" onclick="nextQuestion()" style="display:none;">Next Question →</button>
+    </div>`;
 }
 
 function getCaseName(key) {
-  const names = { lucy:'Lucy v. Zehmer', hawkins:'Hawkins v. McGee', marbury:'Marbury v. Madison', dudley:'R v. Dudley & Stephens', cunningham:'R v. Cunningham', brown:'Brown v. Board of Education', garratt:'Garratt v. Dailey', palsgraf:'Palsgraf v. Long Island Railroad', grimshaw:'Grimshaw v. Ford Motor Co.', katko:'Katko v. Briney', rylands:'Rylands v. Fletcher', frigaliment:'Frigaliment v. B.N.S.', hadley:'Hadley v. Baxendale', jacobyoungs:'Jacob & Youngs v. Kent', lochner:'Lochner v. New York' };
-  return names[key] || key;
+  for (const cat of Object.values(categories)) {
+    const found = cat.find(c => c.value === key);
+    if (found) return found.label;
+  }
+  return key;
 }
 
 function selectAnswer(selected, correct) {
@@ -247,26 +1141,55 @@ function selectAnswer(selected, correct) {
   const q = bank[qi];
   const isCorrect = selected === correct;
   updateScore(isCorrect);
-  document.querySelectorAll('.option-btn').forEach((btn, i) => { btn.disabled = true; if (i === correct) btn.classList.add(isCorrect && i === selected ? 'correct' : 'reveal-correct'); if (i === selected && !isCorrect) btn.classList.add('incorrect'); });
+
+  document.querySelectorAll('.option-btn').forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === correct && isCorrect && i === selected) btn.classList.add('correct');
+    else if (i === correct) btn.classList.add('reveal-correct');
+    if (i === selected && !isCorrect) btn.classList.add('incorrect');
+  });
   if (isCorrect) document.getElementById('opt-' + selected).classList.add('correct');
-  document.getElementById('explanation-area').innerHTML = `<div class="explanation-box"><div class="ex-label">${isCorrect ? '✓ Correct' : '✗ Incorrect'} — Explanation</div><div>${q.explanation}</div></div>`;
+
+  document.getElementById('explanation-area').innerHTML = `
+    <div class="explanation-box">
+      <div class="ex-label">${isCorrect ? '✓ Correct' : '✗ Incorrect'} — Explanation</div>
+      <div>${q.explanation}</div>
+    </div>`;
+
   document.getElementById('next-btn').style.display = 'inline-block';
 }
 
-function nextQuestion() { currentQIndex++; if (currentQIndex % questionOrder.length === 0) { questionOrder = shuffleArray([...Array(questionBank[currentCase].length).keys()]); } renderQuestion(); }
+function nextQuestion() {
+  currentQIndex++;
+  if (currentQIndex % questionOrder.length === 0) {
+    questionOrder = shuffleArray([...Array(questionBank[currentCase].length).keys()]);
+  }
+  renderQuestion();
+}
 
-// ─── WRITTEN ANALYSIS SCENARIOS ─────────────────────────────────────────
+// ── WRITTEN ANALYSIS ───────────────────────────────────────────────────────
 const writtenScenarios = {
-  lucy_written: { title: "Lucy v. Zehmer", text: "On a Saturday evening, Arthur visits a local diner where he runs into his neighbor, Bernard. After several drinks, Arthur says, \"I'll sell you my 200-acre farm for $85,000.\" Bernard immediately replies, \"Deal — let's write it up.\" Arthur laughs and scribbles the terms on a paper napkin, which both men sign. The next morning, Arthur calls Bernard to say he was joking and refuses to convey the property. Bernard had not been drinking and genuinely believed a contract had been formed. Bernard seeks specific performance.\n\nAnalyze whether a binding contract was formed. Apply the objective theory of contract formation. Address consideration and the availability of specific performance as a remedy." },
-  palsgraf_written: { title: "Palsgraf — Negligence & Duty", text: "Maria works as a security guard at a busy train station. She notices a man sprinting toward a departing train and grabs his backpack to help pull him aboard. The backpack, unknown to Maria, contains pressurized aerosol cans. The cans are dislodged, fall to the platform, and explode. The noise causes a crowd to panic; a display rack collapses and injures Sandra, standing 40 feet away.\n\nSandra sues the train station for negligence. Apply both the Cardozo duty analysis and the Andrews proximate cause analysis. Reach a conclusion under each framework and state which you find more persuasive." },
-  garratt_written: { title: "Garratt v. Dailey — Intentional Tort", text: "During a family barbecue, twelve-year-old Kevin watches his elderly aunt, Helen, begin to lower herself into a lawn chair. Kevin quickly slides the chair a few feet to the left — he claims he intended only to reposition it so Helen would have a better view. Helen misses the chair entirely and breaks her hip. Kevin's parents testify he is generally a careful child.\n\nHelen sues Kevin for battery. Kevin denies intent to harm. Analyze whether Kevin committed battery under the substantial certainty standard. Address the relevance of Kevin's stated intent and his age." },
-  hawkins_written: { title: "Hawkins v. McGee — Contract Damages", text: "Dr. Novak, a plastic surgeon, tells his patient James he can \"guarantee a perfect result\" from rhinoplasty. James agrees. The procedure is performed without negligence, but the outcome is poor — asymmetrical nose requiring corrective surgery costing $8,000. James's pre-surgery nose was functional.\n\nJames sues for breach of contract. Analyze whether Dr. Novak's statements constitute an enforceable warranty. Calculate expectation damages. Address whether James can recover pain and suffering from the original surgery." },
-  dudley_written: { title: "Dudley & Stephens — Necessity Defense", text: "Three shipwreck survivors — Chen, Park, and Diaz — have been adrift for 19 days with no food. Diaz, the youngest, has fallen unconscious and appears near death. Chen and Park kill Diaz and consume his body to survive. They are rescued four days later.\n\nCharged with murder, they raise the defense of necessity. Analyze the necessity defense as applied to the deliberate killing of an innocent person. Draw on R v. Dudley & Stephens. Address both the legal outcome and the strongest moral counterargument." },
-  grimshaw_written: { title: "Grimshaw v. Ford — Products Liability & Punitive Damages", text: "AutoCorp manufactures a popular compact SUV. Internal testing reveals side-impact door panels fail at speeds above 25 mph due to a design choice saving $8 per vehicle. An internal memo calculates redesigning would cost $45 million across the fleet while projected claims would total $30 million. Management decides not to redesign. Three years later, Kenji is seriously injured when a low-speed side collision causes his door panel to collapse.\n\nKenji sues for compensatory and punitive damages. Analyze whether punitive damages are available under the Grimshaw conscious disregard standard. Address the significance of the internal cost-benefit memo." },
-  frigaliment_written: { title: "Frigaliment — Contract Interpretation", text: "Tanaka Industries, a Japanese auto parts manufacturer, contracts with Miller Steel Co. for 20,000 units of \"premium-grade steel fasteners\" at $0.45 per unit. Tanaka intends aerospace-grade fasteners rated for extreme temperatures. Miller ships automotive-grade fasteners — lower specification but still high-quality. Aerospace-grade costs $0.62; automotive-grade costs $0.42. No prior course of dealing exists. Expert witnesses disagree about whether \"premium-grade\" means aerospace or above-standard automotive.\n\nTanaka sues for breach. Apply the Frigaliment framework: contract language, trade usage, price evidence, and burden of proof." },
-  hadley_written: { title: "Hadley v. Baxendale — Consequential Damages", text: "Sakura Motors contracts with QuickShip Logistics to deliver a custom engine control unit from Germany to Ohio within 5 business days for $2,500. QuickShip does not ask what the part is for. Sakura does not mention the ECU is the last component needed to restart a shut-down assembly line. QuickShip delivers 8 days late. Sakura loses $1.2 million in production.\n\nSakura sues for $1.2 million. Apply the Hadley two-limb framework. Identify general vs. consequential damages. Determine whether Sakura can recover and what it could have done differently at contracting." },
-  jacobyoungs_written: { title: "Jacob & Youngs — Substantial Performance", text: "Yamada Construction builds a luxury condominium in Tokyo. The contract specifies Italian Calacatta marble for bathroom countertops. The subcontractor installs Turkish Calacatta-style marble instead. An appraiser confirms the Turkish marble is visually indistinguishable with identical durability. The price difference is ~$3/sq ft. Replacing all countertops would require demolishing finished bathrooms at $180,000 cost. The investor demands full replacement.\n\nAnalyze whether Yamada substantially performed. Address: material vs. minor breach, willfulness, the appropriate damages measure, and the economic waste doctrine." },
-  lochner_written: { title: "Lochner v. New York — Substantive Due Process", text: "The State of Columbia passes a law prohibiting ride-sharing drivers from working more than 10 hours in any 24-hour period, citing driver safety studies showing fatigued drivers cause disproportionate accidents. Ride-sharing drivers challenge the law under the Fourteenth Amendment's Due Process Clause, arguing it prevents them from earning a living.\n\nAnalyze under both the Lochner framework and modern rational basis review. Determine whether the law would be upheld or struck down under each, and explain the role of the police power and why the standard of review matters." }
+  lucy_written: {
+    text: `On a Saturday evening, Arthur visits a local diner where he runs into his neighbor, Bernard. After several drinks, Arthur says, "I'll sell you my 200-acre farm for $85,000." Bernard immediately replies, "Deal — let's write it up." Arthur laughs and scribbles the terms on a paper napkin, which both men sign. The next morning, Arthur calls Bernard to say he was joking and refuses to convey the property. Bernard had not been drinking and genuinely believed a contract had been formed. Bernard seeks specific performance.\n\nAnalyze whether a binding contract was formed. Apply the objective theory of contract formation. Address consideration and the availability of specific performance as a remedy.`
+  },
+  palsgraf_written: {
+    text: `Maria works as a security guard at a busy downtown train station. While on duty, she notices a man sprinting toward a departing train. She reaches out and grabs his backpack to help pull him aboard. The backpack, unknown to Maria, contains several pressurized aerosol cans. The cans are dislodged, fall to the platform, and explode loudly. The noise causes a crowd to panic; in the chaos, a display rack collapses and injures Sandra, who was standing 40 feet away purchasing a ticket.\n\nSandra sues the train station for negligence. Apply both the Cardozo duty analysis and the Andrews proximate cause analysis. Reach a conclusion under each framework and state which you find more persuasive and why.`
+  },
+  garratt_written: {
+    text: `During a family barbecue, twelve-year-old Kevin watches his elderly aunt, Helen, begin to lower herself into a lawn chair. Kevin quickly slides the chair a few feet to the left — he claims he intended only to reposition it so Helen would have a better view. Helen, mid-descent, misses the chair entirely and falls hard onto the patio, breaking her hip.\n\nHelen sues Kevin for battery. Kevin denies any intent to harm his aunt and says he thought she would simply sit in the repositioned chair. Analyze whether Kevin committed battery under the substantial certainty standard. Address the relevance of Kevin's stated intent and his age.`
+  },
+  hawkins_written: {
+    text: `Dr. Novak, a plastic surgeon, tells his patient James that he can "guarantee a perfect result" from a rhinoplasty procedure and that James will be "100% satisfied or your money back." James agrees to the surgery. The procedure is performed without negligence, but the outcome is poor — James's nose is asymmetrical and requires corrective surgery costing $8,000. James's pre-surgery nose, while imperfect, was functional and caused him no pain.\n\nJames sues Dr. Novak for breach of contract. Analyze whether Dr. Novak's statements constitute an enforceable contractual warranty. If so, calculate and explain the proper measure of expectation damages. Address whether James may also recover for pain and suffering from the original surgery.`
+  },
+  dudley_written: {
+    text: `Three survivors of a shipwreck — Chen, Park, and Diaz — have been adrift on a lifeboat for 19 days with no food and only rainwater. Diaz, the youngest and weakest, has fallen unconscious and appears near death. Chen and Park, fearing they will all perish, kill Diaz and consume his body to survive. They are rescued four days later.\n\nChen and Park are charged with murder. They raise the defense of necessity. Analyze the necessity defense as applied to the deliberate killing of an innocent person. Draw on the reasoning in R v. Dudley & Stephens. Address both the legal outcome and the strongest moral counterargument to the court's position.`
+  },
+  shoe_written: {
+    text: `TechParts Inc., a Delaware corporation headquartered in Illinois, manufactures specialized circuit boards. It sells exclusively to a California distributor, ShipFast LLC, under an annual contract. ShipFast incorporates TechParts' components into finished devices sold in all 50 states. TechParts has no offices, employees, or property in Oregon. An Oregon consumer purchases a device at a local store and is injured when a TechParts component overheats.\n\nThe Oregon consumer sues TechParts in Oregon state court. TechParts moves to dismiss for lack of personal jurisdiction. Analyze whether Oregon may assert specific personal jurisdiction over TechParts. Apply the minimum contacts test from International Shoe, the purposeful availment requirement from World-Wide Volkswagen, and the stream of commerce debate from Asahi. Reach a conclusion.`
+  },
+  miranda_written: {
+    text: `Detective Rivera arrests Marcus on suspicion of robbery and transports him to the police station. Rivera reads Marcus his Miranda rights. Marcus says, "Yeah, yeah, I understand," and then immediately asks, "Can we just talk? I want to explain my side." Rivera begins questioning Marcus about the robbery. Twenty minutes into the interview, Marcus says, "Actually, I think I need a lawyer before I say anything else." Rivera responds, "You're almost done — just answer this last question," and Marcus answers. That answer is incriminating.\n\nMarcus moves to suppress the statement he made after requesting counsel. Analyze the admissibility of the statement. Apply Miranda v. Arizona and Davis v. United States. Address whether Marcus's initial willingness to talk constituted a valid waiver, and whether Rivera was required to stop questioning when Marcus requested a lawyer.`
+  }
 };
 
 let currentScenario = 'lucy_written';
@@ -274,14 +1197,15 @@ let currentScenario = 'lucy_written';
 function loadScenario(key, el) {
   currentScenario = key;
   document.querySelectorAll('.scenario-chip').forEach(c => c.classList.remove('active'));
-  if (el) { el.classList.add('active'); }
-  else { document.querySelectorAll('.scenario-chip').forEach(c => { if (c.getAttribute('onclick') && c.getAttribute('onclick').indexOf(key) !== -1) c.classList.add('active'); }); }
+  el.classList.add('active');
   document.getElementById('scenario-text').textContent = writtenScenarios[key].text;
   clearIRAC();
 }
 
 function clearIRAC() {
-  ['irac-issue','irac-rule','irac-application','irac-conclusion'].forEach(id => { document.getElementById(id).value = ''; });
+  ['irac-issue','irac-rule','irac-application','irac-conclusion'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
   document.getElementById('irac-feedback').innerHTML = '';
 }
 
@@ -290,25 +1214,65 @@ async function submitIRAC() {
   const rule = document.getElementById('irac-rule').value.trim();
   const application = document.getElementById('irac-application').value.trim();
   const conclusion = document.getElementById('irac-conclusion').value.trim();
-  if (!issue && !rule && !application && !conclusion) { document.getElementById('irac-feedback').innerHTML = '<div class="feedback-box"><div class="fb-label">Note</div>Please complete at least one section before submitting.</div>'; return; }
+
+  if (!issue && !rule && !application && !conclusion) {
+    document.getElementById('irac-feedback').innerHTML = `
+      <div class="feedback-box"><div class="fb-label">Note</div>Please complete at least one section before submitting.</div>`;
+    return;
+  }
+
   const btn = document.getElementById('submit-irac-btn');
-  btn.disabled = true; btn.textContent = 'Analyzing...';
-  document.getElementById('irac-feedback').innerHTML = '<div class="feedback-box"><div class="fb-label">Feedback</div><span class="loading-dots">Reviewing your analysis</span></div>';
+  btn.disabled = true;
+  btn.textContent = 'Analyzing...';
+
+  document.getElementById('irac-feedback').innerHTML = `
+    <div class="feedback-box"><div class="fb-label">Feedback</div>Reviewing your analysis...</div>`;
+
   const sc = writtenScenarios[currentScenario];
-  const prompt = `You are a California Bar exam coach and experienced attorney. A student has submitted an IRAC analysis for the following fact pattern:\n\nFACT PATTERN:\n${sc.text}\n\nSTUDENT'S ANALYSIS:\nIssue: ${issue || '[not completed]'}\nRule: ${rule || '[not completed]'}\nApplication: ${application || '[not completed]'}\nConclusion: ${conclusion || '[not completed]'}\n\nProvide structured feedback on:\n1. IRAC completeness — did each section fulfill its function?\n2. Legal accuracy — is the rule stated correctly? Is the application sound?\n3. English precision — flag any vague hedging language (e.g., "I think," "maybe," "kind of") and suggest confident, precise alternatives. Note one strength in their English expression.\n4. Conclusion — did they commit to a clear answer, or hedge?\n\nBe direct, specific, and challenging — like an experienced attorney reviewing a junior associate's memo. Do not be harsh, but do not be soft. Point to specific phrases. Keep response to 200–280 words.`;
+  const prompt = `You are a California Bar exam coach and experienced attorney. A student has submitted an IRAC analysis for the following fact pattern:
+
+FACT PATTERN:
+${sc.text}
+
+STUDENT'S ANALYSIS:
+Issue: ${issue || '[not completed]'}
+Rule: ${rule || '[not completed]'}
+Application: ${application || '[not completed]'}
+Conclusion: ${conclusion || '[not completed]'}
+
+Provide structured feedback on:
+1. IRAC completeness — did each section fulfill its function?
+2. Legal accuracy — is the rule stated correctly? Is the application sound?
+3. English precision — flag any vague hedging language (e.g., "I think," "maybe," "kind of," "it seems like") and suggest confident, precise alternatives. Note one strength in their English expression.
+4. Conclusion — did they commit to a clear answer, or hedge?
+
+Be direct, specific, and challenging — like an experienced attorney reviewing a junior associate's memo. Do not be harsh, but do not be soft. Point to specific phrases from their analysis. Keep your response to 200–280 words.`;
+
   try {
-    const res = await fetch(PROXY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ model: 'claude-haiku-4-5-20251001', max_tokens: 1000, messages: [{ role: 'user', content: prompt }] }) });
+    const res = await fetch(PROXY_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
     const data = await res.json();
     const feedback = data.content.map(b => b.text || '').join('');
-    document.getElementById('irac-feedback').innerHTML = `<div class="feedback-box"><div class="fb-label">Attorney Feedback</div>${feedback}</div>`;
+    document.getElementById('irac-feedback').innerHTML = `
+      <div class="feedback-box"><div class="fb-label">Attorney Feedback</div>${feedback}</div>`;
   } catch(e) {
-    document.getElementById('irac-feedback').innerHTML = '<div class="feedback-box"><div class="fb-label">Connection Error</div>Unable to reach the server. Please check your connection and try again.</div>';
+    document.getElementById('irac-feedback').innerHTML = `
+      <div class="feedback-box"><div class="fb-label">Connection Error</div>Unable to reach the server. Please check your connection and try again.</div>`;
   }
-  btn.disabled = false; btn.textContent = 'Submit for Feedback';
+
+  btn.disabled = false;
+  btn.textContent = 'Submit for Feedback';
 }
 
-loadScenario('lucy_written');
-
+// ── INIT ───────────────────────────────────────────────────────────────────
+loadScenario('lucy_written', document.querySelector('.scenario-chip'));
 </script>
 </body>
 </html>
